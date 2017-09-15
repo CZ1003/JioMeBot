@@ -13,6 +13,8 @@ def handle(msg):
         bot.sendMessage(chat_id, "AWWW, I love you too!")
         s = bot.exportChatInviteLink(chat_id)
         bot.sendMessage(chat_id, s)
+     elif command == 'TestingGit':
+         bot.sendMessage(chat_id, "It works..")
 
 
 
