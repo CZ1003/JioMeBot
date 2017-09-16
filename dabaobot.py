@@ -71,7 +71,7 @@ def handle_updates(updates, next_stage):
         chat = update["message"]["chat"]["id"]
         if text == "/start":
             keyboard = build_keyboard()
-            send_message("Hello! Are you hungry?", chat, keyboard)
+            send_message("Hello! Are you very hungry?", chat, keyboard)
             return 'YESNO'
         elif text == 'Yes!' and next_stage == 'YESNO':
             send_message('Where would you like to order from?', chat)
