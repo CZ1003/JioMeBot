@@ -42,3 +42,24 @@ class botmethods:
             list.append('{}'.format(a, b))
             message = "\n".join(list)
         return message
+
+    def parseInt(self, s):
+        try:
+            int(s)
+            return True
+        except ValueError:
+            return False
+
+    def checkOrders(self, orderId):  # Function to get all orders
+        for (a, b, c, d, e) in db.get_all_orders():  ##
+            try:
+                orderidparse = int(orderId)
+                if a == orderidparse:
+                    match = "SUCCESS"
+                else:
+                    match = 'UNSUCCESSFUL'
+            except ValueError:
+                match = 'UNSUCCESSFUL'
+
+        return match
+

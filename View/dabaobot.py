@@ -67,11 +67,18 @@ def handle_updates(updates, next_stage):
             set.send_message(bot.getAllOrders(chat), chat)
             return 'ACCEPT'
         elif next_stage == 'ACCEPT':
-            orderid = text
-            set.send_message('Please confirm following order to be accepted:', chat)
-            keyboard = set.build_keyboard(2)
-            set.send_message(bot.getOrderByOrderID(orderid), chat, keyboard)
-            return 'DELIVERCONFIRM'
+            if bot.checkOrders(text) == 'SUCCESS':
+                orderid = text
+                bot.checkOrders(orderid)
+                set.send_message('Please confirm following order to be accepted:', chat)
+                keyboard = set.build_keyboard(2)
+                set.send_message(bot.getOrderByOrderID(orderid), chat, keyboard)
+                return 'DELIVERCONFIRM'
+            else:
+                set.send_message('Invalid Order ID! Please try again.', chat)
+                set.send_message('Here\'s a list of existing orders!', chat)
+                set.send_message(bot.getAllOrders(chat), chat)
+                return 'ACCEPT'
         elif text == 'No!' and next_stage == 'DELIVERCONFIRM':
             keyboard = set.build_keyboard(1)
             set.send_message('Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?',
