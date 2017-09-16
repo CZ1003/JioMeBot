@@ -39,7 +39,7 @@ class settings:
 
     def send_message(self, text, chat_id, reply_markup=None):
         text = urllib.parse.quote_plus(text)
-        url = URL + "sendMessage?text={}&chat_id={}&parse_mode=Markdown".format(text, chat_id)
+        url = URL + "sendMessage?text={}&chat_id={}&parse_mode=HTML".format(text, chat_id)
         if reply_markup:
             url += "&reply_markup={}".format(reply_markup)
         self.get_url(url)
@@ -52,13 +52,11 @@ class settings:
         return max(update_ids)
 
 
-    def build_keyboard(self):
-        keyboard = [[item] for item in ['Yes!', 'No!', 'What is this?']]
-        reply_markup = {"keyboard":keyboard, "one_time_keyboard": True}
-        return json.dumps(reply_markup)
-
-
-    def build_secondary_keyboard(self):
-        keyboard = [[item] for item in ['Yes!', 'No!']]
-        reply_markup = {"keyboard":keyboard, "one_time_keyboard": True}
+    def build_keyboard(self, code):
+        if code == 1:
+            keyboard = [[item] for item in ['Place an order', 'Deliver orders', 'What is this?']]
+            reply_markup = {"keyboard":keyboard, "one_time_keyboard": True}
+        elif code == 2:
+            keyboard = [[item] for item in ['Yes!', 'No!']]
+            reply_markup = {"keyboard": keyboard, "one_time_keyboard": True}
         return json.dumps(reply_markup)
