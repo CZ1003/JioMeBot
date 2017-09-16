@@ -32,10 +32,10 @@ class DBHelper:
         self.conn.commit()
 
     def get_order(self, chat_id):
-        stmt = "SELECT food, location FROM orders WHERE chat_id = (?)"
+        stmt = "SELECT order_id,food, location FROM orders WHERE chat_id = (?)"
         args = (chat_id,)
         return [x for x in self.conn.execute(stmt, args)]
 
     def get_all_orders(self):
-        stmt = "SELECT food, location FROM orders"
+        stmt = "SELECT order_id, food, location FROM orders"
         return [x for x in self.conn.execute(stmt)]
