@@ -1,8 +1,11 @@
 import time, settings, botmethods, dbhelper
+from settings import settings
+from botmethods import botmethods
+from dbhelper import DBHelper
 
 bot = botmethods()
 set = settings()
-db = dbhelper()
+db = DBHelper()
 
 def handle_updates(updates, next_stage):
     for update in updates["result"]:

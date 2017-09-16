@@ -9,7 +9,7 @@ class settings:
     def __init__(self):
         pass
 
-    def get_url(url):
+    def get_url(self, url):
         response = requests.get(url)
         content = response.content.decode("utf8")
         return content
@@ -29,7 +29,7 @@ class settings:
         return js
 
 
-    def get_last_chat_id_and_text(updates):
+    def get_last_chat_id_and_text(self, updates):
         num_updates = len(updates["result"])
         last_update = num_updates - 1
         text = updates["result"][last_update]["message"]["text"]
@@ -45,7 +45,7 @@ class settings:
         self.get_url(url)
 
 
-    def get_last_update_id(updates):
+    def get_last_update_id(self, updates):
         update_ids = []
         for update in updates["result"]:
             update_ids.append(int(update["update_id"]))
