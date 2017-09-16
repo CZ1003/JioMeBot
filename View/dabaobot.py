@@ -9,12 +9,18 @@ set = settings()
 db = DBHelper()
 
 def handle_updates(updates, next_stage):
-    global location, usertime, userlocation, orderid
+    global location, usertime, userlocation, orderid, user, food
     for update in updates["result"]:
         text = update["message"]["text"]
         chat = update["message"]["chat"]["id"]
-        username = update["message"]["chat"]["username"]
-        if text == "/start":
+        if 'username' not in update['message']["chat"]:
+            user = ""
+        else:
+            user = update["message"]["chat"]["username"]
+        if text == "/start" and user == "":
+            set.send_message('Hello and welcome to FoodHitch!\nIt seems like you do not have a Telegram Username.\nIn order to process your orders and ensure that communication between you and the deliverer is smooth, a username is needed.\nPlease create a Telegram Username before using me, thank you!',chat)
+            return 'Initial'
+        elif text == "/start":
             keyboard = set.build_keyboard(1)
             set.send_message('Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?', chat, keyboard)
             return 'YESNO'
@@ -41,8 +47,8 @@ def handle_updates(updates, next_stage):
             return 'FINALIZE'
         elif next_stage == 'FINALIZE':
             food = text
-            set.send_message('Your order of {} from {} has been entered into the database!\nGood luck in getting a Food Hitch!'.format(food, location), chat)
-            db.add_order(chat, location, food, userlocation, usertime, username)
+            set.send_message('Your order of {} from {} has been entered into the database!\nGood luck in getting a Food Hitch!'.format(location, food), chat)
+            db.add_order(chat, location, food, userlocation, usertime, user)
             set.send_message('Your current orders:', chat)
             set.send_message(bot.getOrderByChatID(chat), chat)
             keyboard = set.build_keyboard(2)
@@ -72,16 +78,15 @@ def handle_updates(updates, next_stage):
                 chat, keyboard)
             return 'YESNO'
         elif text == 'Yes!' and next_stage == 'DELIVERCONFIRM':
-            db.bindSenderToOrder(username, orderid)
+            db.bindSenderToOrder(user, orderid)
             set.send_message('Congratulations! You have accepted this order. Please contact @' + bot.getUsernameByOrderId(orderid) + ' for further communication.', chat)
             db.setStatus(1, orderid)
-            set.send_message('Congratulations! Your order has been accepted!\nThis order has been placed on hold and will not appear in main list.\nPlease contact @' + username + ' for further communication.', bot.getChatIdByOrderId(orderid))
+            set.send_message('Congratulations! Your order has been accepted!\nThis order has been placed on hold and will not appear in main list.\nPlease contact @' + user + ' for further communication.', bot.getChatIdByOrderId(orderid))
 
 def main():
     db.setup()
     last_update_id = None
     next_stage = 'INITIAL'
-    #location = 'INITIAL'
     while True:
         updates = set.get_updates(last_update_id)
         if len(updates["result"]) > 0:
