@@ -54,9 +54,15 @@ class settings:
 
     def build_keyboard(self, code):
         if code == 1:
-            keyboard = [[item] for item in ['Place an order', 'Deliver orders', 'What is this?']]
+            keyboard = [[item] for item in ['Food Hitchee', 'Food Hitcher', 'What is this?']]
             reply_markup = {"keyboard":keyboard, "one_time_keyboard": True}
         elif code == 2:
             keyboard = [[item] for item in ['Yes!', 'No!']]
+            reply_markup = {"keyboard": keyboard, "one_time_keyboard": True}
+        elif code == 3:
+            keyboard = [[item] for item in ['Place an order', 'View placed orders']]
+            reply_markup = {"keyboard": keyboard, "one_time_keyboard": True}
+        elif code == 4:
+            keyboard = [[item] for item in ['View all orders', 'View confirmed orders']]
             reply_markup = {"keyboard": keyboard, "one_time_keyboard": True}
         return json.dumps(reply_markup)
