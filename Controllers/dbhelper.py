@@ -39,7 +39,7 @@ class DBHelper:
         return result
 
     def get_all_orders(self):
-        stmt = "SELECT order_id, location, food, user_location, time FROM orders WHERE status = 0"
+        stmt = "SELECT order_id,  food, location, user_location, time FROM orders WHERE status = 0"
         result = (x for x in self.conn.execute(stmt))
         self.conn.commit()
         return result

@@ -41,26 +41,33 @@ def handle_updates(updates, next_stage):
             set.send_message('What would you like to eat?\n(E.g. Mee Goreng, Chicken Rice..)', chat)
             return 'WHERE'
         elif next_stage == 'WHERE':
-            location = text
+            food = text
             set.send_message('Where would you like to order it from?\n(E.g. North Spine Plaza, Canteen 14..)', chat)
             return 'TIME'
         elif next_stage == 'TIME':
-            usertime = text
+            location = text
             set.send_message('What time would you like the food to be sent at?\n(E.g. 2AM, 4PM..)', chat)
             return 'USERLOCATION'
         elif next_stage == 'USERLOCATION':
-            userlocation = text
+            usertime = text
             set.send_message('Where would you like the food to be delivered to?\n(E.g. Hall 12, LT13..)', chat)
             return 'FINALIZE'
         elif next_stage == 'FINALIZE':
-            food = text
-            set.send_message('Your order of {} from {} has been entered into the database!\nGood luck in getting a Food Hitch!'.format(location, food), chat)
+            userlocation = text
+            keyboard = set.build_keyboard(2)
+            set.send_message('Confirm order?', chat)
+            set.send_message('Food: <b>{}</b> from <b>{}</b> at <b>{}</b> to <b>{}</b>.'.format(food, location, usertime, userlocation), chat, keyboard)
+            return 'CONFIRM'
+        elif next_stage == 'CONFIRM' and text == 'Yes!':
+            set.send_message('Your order of {} from {} has been entered into the database!\nGood luck in getting a Food Hitch!'.format(food, location), chat)
             db.add_order(chat, location, food, userlocation, usertime, user)
             set.send_message('Your current orders:', chat)
             set.send_message(bot.getOrderByChatID(chat), chat)
-            keyboard = set.build_keyboard(2)
             set.send_message('You will be notified if someone confirms to take up your order! Sit tight!\nStart me up again anytime!', chat)
             return 'INITIAL'
+        elif next_stage == 'CONFIRM' and text == 'No!':
+            set.send_message('What would you like to eat?\n(E.g. Mee Goreng, Chicken Rice..)', chat)
+            return 'WHERE'
         elif text == 'No!' and next_stage == 'YESNO':
             keyboard = set.build_keyboard(1)
             set.send_message('Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?',chat, keyboard)
