@@ -10,7 +10,7 @@ class botmethods:
         list = []
         for (a, b, c, d, e) in db.get_all_orders():  ##
             list.append('ID: <b>{}</b> Food: <b>{}</b> from <b>{}</b> - Time: <b>{}</b> Deliver to: <b>{}</b>'.format(a, b, c, d, e))
-            message = "\n".join(list) + '\n\nPlease key in a valid order ID!'
+            message = "\n".join(list) + '\n\nPlease key in a valid order ID to accept!'
         if not list:
             message = "There are currently no orders!"
         return message
@@ -51,15 +51,16 @@ class botmethods:
             return False
 
     def checkOrders(self, orderId):  # Function to get all orders
+        success = "UNSUCCESSFUL"
         for (a, b, c, d, e) in db.get_all_orders():  ##
             try:
                 orderidparse = int(orderId)
                 if a == orderidparse:
-                    match = "SUCCESS"
+                    success = "SUCCESSFUL"
+                    return success
                 else:
-                    match = 'UNSUCCESSFUL'
+                   success = "UNSUCCESSFUL"
             except ValueError:
-                match = 'UNSUCCESSFUL'
-
-        return match
+                return success
+        return success
 

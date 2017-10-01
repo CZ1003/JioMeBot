@@ -4,7 +4,7 @@ import sqlite3
 class DBHelper:
     def __init__(self, dbname="dabao.sqlite"):
         self.dbname = dbname
-        self.conn = sqlite3.connect(dbname)
+        self.conn = sqlite3.connect(dbname,  check_same_thread = False)
         c = self.conn.cursor()
 
     def setup(self):
