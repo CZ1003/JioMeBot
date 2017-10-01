@@ -5,6 +5,7 @@ from Controllers.botmethods import botmethods
 from Controllers.dbhelper import DBHelper
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, RegexHandler,
                           ConversationHandler)
+from telegram.__main__ import main as tmain
 from telegram import ReplyKeyboardMarkup
 
 bots = botmethods()
@@ -36,10 +37,14 @@ logger = logging.getLogger(__name__)
 
 ### Starting Menu ###
 def start(bot, update):
-    update.message.reply_text(
-        "Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
-        reply_markup=markup)
-    return MENU
+    if  update.message.chat.username is None:
+        update.message.reply_text(
+            "Hello and welcome to FoodHitch!\nIt seems like you do not have a Telegram Username.\nIn order to process your orders and ensure that communication between you and the deliverer is smooth, a username is needed.\nPlease create a Telegram Username before using me, thank you!\n(You can set your username in Settings.)")
+    else:
+        update.message.reply_text(
+            "Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
+            reply_markup=markup)
+        return MENU
 
 
 ### Food Hitchee ###
@@ -154,6 +159,10 @@ def confirmorder(bot, update, user_data):
                      bots.getChatIdByOrderId(user_data['choice']))
 
     user_data.clear()
+    update.message.reply_text(
+        "Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
+        reply_markup=markup)
+    return MENU
 
 
 def confirmedorders(bot, update):
@@ -181,7 +190,7 @@ def help(bot, update):
     update.message.reply_text(
         'Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?',
         reply_markup=markup)
-    return 'MENU'
+    return MENU
 
 
 def main():
@@ -245,4 +254,5 @@ def main():
 
 
 if __name__ == '__main__':
+    tmain()
     main()
