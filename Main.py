@@ -42,7 +42,7 @@ def start(bot, update):
             "Hello and welcome to FoodHitch!\nIt seems like you do not have a Telegram Username.\nIn order to process your orders and ensure that communication between you and the deliverer is smooth, a username is needed.\nPlease create a Telegram Username before using me, thank you!\n(You can set your username in Settings.)")
     else:
         update.message.reply_text(
-            "Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
+            "Hello and welcome to FoodHitch, bitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
             reply_markup=markup)
         return MENU
 
