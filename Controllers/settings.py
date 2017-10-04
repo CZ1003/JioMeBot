@@ -3,6 +3,7 @@ import json
 import requests
 
 
+#TOKEN = "387099409:AAFmM5sismztGNYvfUo388Bn9QeEhUUcce8"
 TOKEN = "422679288:AAFmt0jTQIUs-9aZkTMCJ2AhDHWDaToYk3Y"
 URL = "https://api.telegram.org/bot{}/".format(TOKEN)
 
