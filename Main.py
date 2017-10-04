@@ -195,7 +195,7 @@ def help(bot, update):
 ### Main ###
 def main():
     db.setup()
-    updater = Updater("387099409:AAFmM5sismztGNYvfUo388Bn9QeEhUUcce8")
+    updater = Updater("422679288:AAFmt0jTQIUs-9aZkTMCJ2AhDHWDaToYk3Y")
     dp = updater.dispatcher
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler('start', start)],
