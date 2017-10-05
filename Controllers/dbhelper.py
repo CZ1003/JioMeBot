@@ -12,16 +12,12 @@ class DBHelper:
                     chat_id INTEGER, 
                     location TEXT, 
                     food TEXT)"""
-        #itemidx = "CREATE INDEX IF NOT EXISTS itemIndex ON items (description ASC)"
-        #ownidx = "CREATE INDEX IF NOT EXISTS ownIndex ON items (owner ASC)"
         self.conn.execute(tblstmt)
-        #self.conn.execute(itemidx)
-        #self.conn.execute(ownidx)
         self.conn.commit()
 
-    def add_order(self, chat_id, location, food, userlocation, time, rcv_username):
-        stmt = "INSERT INTO orders (chat_id, location, food, user_location, time, receiver_username, status) VALUES (?, ?, ?, ?, ?, ?, ?)"
-        args = (chat_id, location, food, userlocation, time, rcv_username, 0)
+    def add_order(self, chat_id, location, food, userlocation, time, rcv_username, tip):
+        stmt = "INSERT INTO orders (chat_id, location, food, user_location, time, receiver_username, status, tip) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+        args = (chat_id, location, food, userlocation, time, rcv_username, 0, tip)
         self.conn.execute(stmt, args)
         self.conn.commit()
 
@@ -32,31 +28,65 @@ class DBHelper:
         self.conn.commit()
 
     def get_order(self, chat_id):
-        stmt = "SELECT order_id, location, food,  time, user_location  FROM orders WHERE chat_id = (?)"
+        stmt = "SELECT order_id, location, food,  time, user_location, tip  FROM orders WHERE chat_id = (?)"
         args = (chat_id,)
         result = (x for x in self.conn.execute(stmt, args))
         self.conn.commit()
         return result
 
     def get_all_orders(self):
-        stmt = "SELECT order_id,  food, location,  time, user_location FROM orders WHERE status = 0"
+        stmt = "SELECT order_id,  food, location,  time, user_location, tip FROM orders WHERE status = 0"
         result = (x for x in self.conn.execute(stmt))
         self.conn.commit()
         return result
 
+    def getAllPlacedOrdersByChatID(self, chatId, orderId):
+        stmt = "SELECT order_id,  food, location,  time, user_location, tip FROM orders WHERE status = 0 AND chat_id = (?) AND order_id = (?)"
+        args = (chatId, orderId,)
+        result = (x for x in self.conn.execute(stmt, args))
+        self.conn.commit()
+        return result
+
+    def get_all_pendingorders_by_chat_id(self, chat_id):
+        stmt = "SELECT order_id,  food, location,  time, user_location, tip, sender_username FROM orders WHERE status = 1 AND chat_id = (?)"
+        args = (chat_id,)
+        result = (x for x in self.conn.execute(stmt, args))
+        self.conn.commit()
+        return result
+
+    def get_unconfirmed_orders_by_chat_id(self, chat_id):
+        stmt = "SELECT order_id,  food, location,  time, user_location, tip FROM orders WHERE status = 0 AND chat_id = (?)"
+        args = (chat_id,)
+        result = (x for x in self.conn.execute(stmt, args))
+        self.conn.commit()
+        return result
+
     def getOrderByOrderID(self, order_id):
-        stmt = "SELECT order_id, food, location, time,user_location  FROM orders where order_id = (?)"
+        stmt = "SELECT order_id, food, location, time,user_location, tip  FROM orders where order_id = (?)"
         args = (order_id,)
         result = (x for x in self.conn.execute(stmt, args))
         self.conn.commit()
         return result
 
-    def bindSenderToOrder(self, sender_username, order_id):
-        stmt = "UPDATE orders SET sender_username = (?) where order_id = (?)"
-        args = (sender_username, order_id)
+    def getPendingOrderByOrderID(self, order_id, username):
+        stmt = "SELECT order_id, food, location, time,user_location, tip  FROM orders where order_id = (?) AND sender_username = (?) AND status = 1"
+        args = (order_id, username)
+        result = (x for x in self.conn.execute(stmt, args))
+        self.conn.commit()
+        return result
+
+    def getPendingOrdersByUsername(self, username):
+        stmt = "SELECT order_id, food, location, time,user_location, tip  FROM orders where sender_username = (?) AND status = 1"
+        args = (username,)
+        result = (x for x in self.conn.execute(stmt, args))
+        self.conn.commit()
+        return result
+
+    def bindSenderToOrder(self, sender_username, sender_chatid, order_id):
+        stmt = "UPDATE orders SET sender_username = (?), sender_chatid = (?) where order_id = (?)"
+        args = (sender_username, sender_chatid, order_id)
         self.conn.execute(stmt, args)
         self.conn.commit()
-
 
     def getChatIdByOrderId(self, order_id):
         stmt = "SELECT chat_id, food FROM orders where order_id = (?)"
@@ -72,6 +102,30 @@ class DBHelper:
         self.conn.commit()
         return result
 
+    def getsenderByOrderId(self, order_id):
+        stmt = "SELECT sender_username, food FROM orders where order_id = (?)"
+        args = (order_id,)
+        result = (x for x in self.conn.execute(stmt, args))
+        self.conn.commit()
+        return result
+
+    def getSenderChatIDbyOrderId(self, order_id):
+        stmt = "SELECT sender_chatid, food FROM orders where order_id = (?)"
+        args = (order_id,)
+        result = (x for x in self.conn.execute(stmt, args))
+        self.conn.commit()
+        return result
+
+    def removePlacedOrder(self, order_id):
+        stmt = "DELETE FROM orders WHERE order_id = (?)"
+        args = (order_id,)
+        self.conn.execute(stmt, args)
+        self.conn.commit()
+
+    # 0 - Available
+    # 1 - Pending order
+    # 2 - Delivered
+    # 3 - Cancelled
     def setStatus(self, status, order_id):
         stmt = "UPDATE orders SET status = (?) where order_id = (?)"
         args = (status, order_id)

@@ -17,7 +17,7 @@ reply_keyboard = [['Food Hitchee'], ['Food Hitcher'],
 
 markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
 
-reply_keyboard2 = [['Place an order'], ['View placed orders'], ['End']]
+reply_keyboard2 = [['Place an order'], ['View placed orders'], ['View pending orders'], ['End']]
 markup2 = ReplyKeyboardMarkup(reply_keyboard2, one_time_keyboard=True)
 
 reply_keyboard3 = [['Yes'], ['No'], ['End']]
@@ -26,8 +26,9 @@ markup3 = ReplyKeyboardMarkup(reply_keyboard3, one_time_keyboard=True)
 reply_keyboard4 = [['View All Orders'], ['View Confirmed Orders'], ['End']]
 markup4 = ReplyKeyboardMarkup(reply_keyboard4, one_time_keyboard=True)
 
-MENU, SUBMENUHITCHEE, WHAT, WHERE, TIME, USERLOCATION, FINALIZE, CONFIRM, SUBMENUHITCHER, ACCEPT, DELIVERCONFIRM = range(
-    11)
+MENU, SUBMENUHITCHEE, WHAT, WHERE, TIME, USERLOCATION, TIP, FINALIZE, \
+CONFIRM, SUBMENUHITCHER, ACCEPT, DELIVERCONFIRM, CANCEL, CONFIRMCANCEL, \
+CONFIRMREMOVE, CANCELHITCHEE  = range(16)
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -76,13 +77,18 @@ def userlocation(bot, update, user_data):
     text = update.message.text
     user_data['time'] = text
     update.message.reply_text('Where would you like the food to be delivered to?\n(E.g. Hall 12, LT13..)')
-    return FINALIZE
+    return TIP
 
+def tip(bot, update, user_data):
+    text = update.message.text
+    user_data['userlocation'] = text
+    update.message.reply_text('How much would you like to tip your hitcher?\n(E.g. $5, $10)')
+    return FINALIZE
 
 def finalize(bot, update, user_data):
     text = update.message.text
-    user_data['userlocation'] = text
-    set.send_message('Food: <b>{}</b> from <b>{}</b> at <b>{}</b> to <b>{}</b>.'.format(user_data["food"], user_data["location"], user_data["time"], user_data["userlocation"]), update.message.chat.id)
+    user_data['tip'] = text
+    set.send_message('Food: <b>{}</b> from <b>{}</b> at <b>{}</b> to <b>{}</b> with a tip of <b>{}</b>.'.format(user_data["food"], user_data["location"], user_data["time"], user_data["userlocation"], user_data["tip"]), update.message.chat.id)
     update.message.reply_text('Confirm order?', reply_markup=markup3)
     return CONFIRM
 
@@ -91,7 +97,7 @@ def addorder(bot, update, user_data):
     userid = update.message.chat.id
     username = update.message.chat.username
     db.add_order(userid, user_data["location"], user_data["food"], user_data["userlocation"], user_data["time"],
-                 username)
+                 username, user_data["tip"])
     update.message.reply_text(
         'Your order of {} from {} has been entered into the database!\nGood luck in getting a Food Hitch!'.format(
             user_data["food"], user_data["location"]))
@@ -107,12 +113,61 @@ def repeatorder(bot, update, user_data):
     return SUBMENUHITCHEE
 
 def placedorders(bot, update):
-    update.message.reply_text('Under construction!')
-    update.message.reply_text(
+    placedorders = bots.getUnconfirmedOrdersByChatID(update.message.chat.id)
+    if placedorders is not None:
+        update.message.reply_text('Here''s a list of your placed orders!')
+        set.send_message(placedorders, update.message.chat.id)
+        return CONFIRMREMOVE
+
+    else:
+        update.message.reply_text('You have no placed orders! Please place an order first.')
+        update.message.reply_text('Seems like you\'re hungry! \nPlease choose an option:', reply_markup=markup2)
+        return SUBMENUHITCHEE
+
+def confirmRemovePlacedOrder(bot, update, user_data):
+    user_data['placed'] = update.message.text
+    if bots.checkPlacedOrdersByChatID(user_data['placed'], update.message.chat.id) == 'SUCCESSFUL':
+        db.removePlacedOrder(user_data['placed'])
+        update.message.reply_text('Order removed from list.')
+        user_data.clear()
+        update.message.reply_text(
         "Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
         reply_markup=markup)
-    return MENU
+        return MENU
+    else:
+        update.message.reply_text('Invalid Order ID! Please try again.')
+        update.message.reply_text('Here''s a list of your placed orders!')
+        set.send_message(bots.getUnconfirmedOrdersByChatID(update.message.chat.id), update.message.chat.id)
+        return CONFIRMREMOVE
 
+def pendingOrders(bot, update):
+        placedorders = bots.getPendingOrdersByChatID(update.message.chat.id)
+        if placedorders is not None:
+            update.message.reply_text('Here''s a list of your pending orders!')
+            set.send_message(placedorders, update.message.chat.id)
+            return CANCELHITCHEE
+
+        else:
+            update.message.reply_text('You have no pending orders! Please place an order first.')
+            update.message.reply_text('Seems like you\'re hungry! \nPlease choose an option:', reply_markup=markup2)
+            return SUBMENUHITCHEE
+
+def confirmCancelPendingOrder(bot, update, user_data):
+            user_data['placed'] = update.message.text
+            if bots.checkPendingOrdersByChatID(user_data['placed'], update.message.chat.id) == 'SUCCESSFUL':
+                db.setStatus(3, user_data['placed'])
+                update.message.reply_text('Order cancelled successfully!')
+                set.send_message('The order of: ' + bots.getOrderByOrderID(user_data['placed']) + ' has been cancelled by hitchee.', bots.getSenderChatIdByOrderId(user_data['placed']))
+                user_data.clear()
+                update.message.reply_text(
+                    "Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
+                    reply_markup=markup)
+                return MENU
+            else:
+                update.message.reply_text('Invalid Order ID! Please try again.')
+                update.message.reply_text('Here''s a list of your placed orders!')
+                set.send_message(bots.getUnconfirmedOrdersByChatID(update.message.chat.id), update.message.chat.id)
+                return CONFIRMREMOVE
 
 ### Food Hitcher ###
 def foodhitcher(bot, update):
@@ -120,12 +175,17 @@ def foodhitcher(bot, update):
                               reply_markup=markup4)
     return SUBMENUHITCHER
 
-
 def vieworders(bot, update):
-    update.message.reply_text('Here''s a list of existing orders!')
-    set.send_message(bots.getAllOrders(update.message.chat.id), update.message.chat.id)
-    return ACCEPT
-
+    allOrders = bots.getAllOrders()
+    if allOrders == "There are currently no orders!":
+        update.message.reply_text('There are currently no orders!')
+        update.message.reply_text('Thank you for making hungry people happy! \nPlease choose an option:',
+                                  reply_markup=markup4)
+        return SUBMENUHITCHER
+    else:
+        update.message.reply_text('Here''s a list of existing orders!')
+        set.send_message(allOrders, update.message.chat.id)
+        return ACCEPT
 
 def acceptorder(bot, update, user_data):
     text = update.message.text
@@ -138,7 +198,7 @@ def acceptorder(bot, update, user_data):
     else:
         update.message.reply_text('Invalid Order ID! Please try again.')
         update.message.reply_text('Here''s a list of existing orders!')
-        set.send_message(bots.getAllOrders(update.message.chat.id), update.message.chat.id)
+        set.send_message(bots.getAllOrders(), update.message.chat.id)
         return ACCEPT
 
 def repeatdelivery(bot, update, user_data):
@@ -148,7 +208,7 @@ def repeatdelivery(bot, update, user_data):
     return ACCEPT
 
 def confirmorder(bot, update, user_data):
-    db.bindSenderToOrder(update.message.chat.id, user_data['choice'])
+    db.bindSenderToOrder(update.message.chat.username, update.message.chat.id, user_data['choice'])
     set.send_message('Congratulations! You have accepted this order.\nOrder Details:\n\n' + bots.getOrderByOrderID(
         user_data['choice']) + '\n\nPlease contact @' + bots.getUsernameByOrderId(
         user_data['choice']) + ' for further communication.', update.message.chat.id)
@@ -166,7 +226,38 @@ def confirmorder(bot, update, user_data):
 
 
 def confirmedorders(bot, update):
-    update.message.reply_text('Under construction!')
+    pendingorders = bots.getPendingOrdersByUsername(update.message.chat.username)
+    if pendingorders is not None:
+        update.message.reply_text('Here are your pending orders!')
+        set.send_message(bots.getPendingOrdersByUsername(update.message.chat.username), update.message.chat.id)
+        update.message.reply_text('Please enter order ID that you would like to cancel or tap on /home to return to home page.')
+    else:
+        update.message.reply_text('You have not accepted any orders yet!')
+        update.message.reply_text('Thank you for making hungry people happy! \nPlease choose an option:',
+                                  reply_markup=markup4)
+        return SUBMENUHITCHER
+    return CANCEL
+
+def cancelorders(bot, update, user_data):
+    text = update.message.text
+    user_data['order'] = text
+    if bots.checkOrderToCancel(user_data['order'], update.message.chat.username) == 'SUCCESSFUL':
+        update.message.reply_text('Please confirm following order to be cancelled:', reply_markup=markup3)
+        set.send_message(bots.getOrderByOrderID(user_data['order']), update.message.chat.id)
+        return CONFIRMCANCEL
+    else:
+        update.message.reply_text('Invalid Order ID! Please try again.')
+        update.message.reply_text('Here are your pending orders!')
+        set.send_message(bots.getPendingOrdersByChatID(update.message.chat.id), update.message.chat.id)
+        update.message.reply_text('Please enter order ID that you would like to cancel.')
+        return CANCEL
+
+def confirmcancel(bot, update, user_data):
+    chatid = bots.getChatIdByOrderId(user_data['order'])
+    db.setStatus(3, user_data['order'])
+    update.message.reply_text('Order cancelled successfully!')
+    set.send_message('Your order of: ' + bots.getOrderByOrderID(user_data['order']) + ' has been cancelled. Please try again!', chatid)
+    user_data.clear()
     update.message.reply_text(
         "Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
         reply_markup=markup)
@@ -175,10 +266,9 @@ def confirmedorders(bot, update):
 
 ## Misc ###
 def cancel(bot, update, user_data):
-    user_data.clear()
     update.message.reply_text('Thank you for using me. /start me up soon again yeah?')
+    user_data.clear()
     return ConversationHandler.END
-
 
 def error(bot, update, error):
     logger.warn('Update "%s" caused error "%s"' % (update, error))
@@ -195,8 +285,8 @@ def help(bot, update):
 ### Main ###
 def main():
     db.setup()
-    #updater = Updater("387099409:AAFmM5sismztGNYvfUo388Bn9QeEhUUcce8")  # Dev environment
-    updater = Updater("422679288:AAFmt0jTQIUs-9aZkTMCJ2AhDHWDaToYk3Y") # Updater takes in bot token, runs in separate thread and handles updates from different telegram users.
+    updater = Updater("387099409:AAFmM5sismztGNYvfUo388Bn9QeEhUUcce8")  # Dev environment
+    #updater = Updater("422679288:AAFmt0jTQIUs-9aZkTMCJ2AhDHWDaToYk3Y") # Updater takes in bot token, runs in separate thread and handles updates from different telegram users.
     dp = updater.dispatcher
     conv_handler = ConversationHandler( #Handles different commands, states. For e.g. "Food Hitchee" Is under MENU state
         entry_points=[CommandHandler('start', start)],
@@ -213,7 +303,9 @@ def main():
             SUBMENUHITCHEE: [RegexHandler('^Place an order$',
                                           what),
                              RegexHandler('^View placed orders$',
-                                          placedorders)
+                                          placedorders),
+                             RegexHandler('^View pending orders$',
+                                          pendingOrders)
                              ],
             WHERE: [MessageHandler(Filters.text,
                                    where, pass_user_data=True)],
@@ -224,11 +316,20 @@ def main():
             USERLOCATION: [MessageHandler(Filters.text,
                                           userlocation, pass_user_data=True)],
 
+            TIP: [MessageHandler(Filters.text,
+                                          tip, pass_user_data=True)],
+
             FINALIZE: [MessageHandler(Filters.text,
                                       finalize, pass_user_data=True)],
 
             CONFIRM: [RegexHandler('^Yes$', addorder, pass_user_data=True),
                       RegexHandler('^No$', repeatorder, pass_user_data=True)],
+
+            CONFIRMREMOVE: [MessageHandler(Filters.text,
+                                      confirmRemovePlacedOrder, pass_user_data=True)],
+
+            CANCELHITCHEE: [MessageHandler(Filters.text,
+                                           confirmCancelPendingOrder, pass_user_data=True)],
 
             #### Food Hitcher ####
             SUBMENUHITCHER: [RegexHandler('^View All Orders$',
@@ -239,13 +340,20 @@ def main():
             ACCEPT: [MessageHandler(Filters.text,
                                     acceptorder, pass_user_data=True)],
 
+            CANCEL: [MessageHandler(Filters.text,
+                                    cancelorders, pass_user_data=True)],
+
+            CONFIRMCANCEL: [MessageHandler(Filters.text,
+                                    confirmcancel, pass_user_data=True)],
+
             DELIVERCONFIRM: [RegexHandler('^Yes$', confirmorder, pass_user_data=True),
                              RegexHandler('^No$', repeatdelivery, pass_user_data=True)]
 
         },
 
         fallbacks=[CommandHandler('cancel', cancel, pass_user_data=True), #These commands are to terminate, return or more specifically do something if the other states return "FALSE".
-                   RegexHandler('^End$', cancel, pass_user_data=True)]
+                   RegexHandler('^End$', cancel, pass_user_data=True),
+                   CommandHandler('home', start)]
     )
 
     dp.add_handler(conv_handler)
