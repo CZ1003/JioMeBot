@@ -7,6 +7,7 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, Rege
                           ConversationHandler, Job)
 from telegram.__main__ import main as tmain
 from telegram import ReplyKeyboardMarkup
+from datetime import time, timedelta
 
 bots = botmethods()
 set = settings()
@@ -45,8 +46,9 @@ def start(bot, update):
         update.message.reply_text(
             "Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
             reply_markup=markup)
+        bots.removeExpiredOrders() #NOT elegant, might slow database down abit. TBD...
+       # db.checkNumOfOrders(update.message.chat.id) ## To be done..
         return MENU
-
 
 ### Food Hitchee ###
 def foodhitchee(bot, update):
@@ -55,42 +57,81 @@ def foodhitchee(bot, update):
 
 
 def what(bot, update):
-    update.message.reply_text('What would you like to eat?\n(E.g. Mee Goreng, Chicken Rice..)')
+    update.message.reply_text('What would you like to eat?\n(Between 4 to 30 characters. E.g. Mee Goreng, Chicken Rice..)')
     return WHERE
 
 
 def where(bot, update, user_data):
     text = update.message.text
-    user_data['food'] = text
-    update.message.reply_text('Where would you like to order it from?\n(E.g. North Spine Plaza, Canteen 14..)')
-    return TIME
-
+    if (len(text) > 3 and len(text) < 31):
+        user_data['food'] = text
+        update.message.reply_text('Where would you like to order it from?\n(Between 4 to 30 characters. E.g. North Spine Plaza, Canteen 14..)')
+        return TIME
+    else:
+        update.message.reply_text("Your input is less than 4 characters. Please try again!")
+        update.message.reply_text('What would you like to eat?\n(In more than 4 chars. E.g. Mee Goreng, Chicken Rice..)')
+        return WHERE
 
 def time(bot, update, user_data):
     text = update.message.text
-    user_data['location'] = text
-    update.message.reply_text('What time would you like the food to be sent at?\n(E.g. 2AM, 4PM..)')
-    return USERLOCATION
-
+    if (len(text) > 3 and len(text) < 31):
+        user_data['location'] = text
+        update.message.reply_text('What date and time would you like the food to be sent at?\n(In DD MMM YYYY HH:MM in 12hrs format)\n(E.g. 24 Sep 2017 2:20PM, 26/09/2017 3:50AM)')
+        return USERLOCATION
+    else:
+        update.message.reply_text("Your input is less than 4 characters. Please try again!")
+        update.message.reply_text('Where would you like to order it from?\n(Between 4 to 30 characters. E.g. North Spine Plaza, Canteen 14..)')
+        return TIME
 
 def userlocation(bot, update, user_data):
     text = update.message.text
-    user_data['time'] = text
-    update.message.reply_text('Where would you like the food to be delivered to?\n(E.g. Hall 12, LT13..)')
-    return TIP
+    if (bots.checkDate(text) and bots.checkDateFormat(text)):
+        date = bots.convertStringToDate(text)
+        future = date.now() + timedelta(minutes = 30)
+        inbetween = date.now() + timedelta(weeks = 1)
+        if (date >= future and date <= inbetween):
+            user_data['time'] = date
+            update.message.reply_text('Where would you like the food to be delivered to?\n(Between 4 to 30 characters. E.g. Hall 12, LT13..)')
+            return TIP
+        else:
+            update.message.reply_text('Sorry! Your order has to be at least 30 minutes after current time up to a week''s advance booking.')
+            update.message.reply_text(
+                'What date and time would you like the food to be sent at?(In DD MMM YYYY HH:MM in 24hrs format)\n(E.g. 24 Sep 2017 2:20PM, 26/09/2017 3:50AM)')
+            return USERLOCATION
+    else:
+        update.message.reply_text('Sorry, invalid date or time! Please try again.')
+        update.message.reply_text(
+            'What date and time would you like the food to be sent at?\n(In DD MMM YYYY HH:MM in 24hrs format)\n(E.g. 24 Sep 2017 2:20PM, 26/09/2017 3:50AM)')
+        return USERLOCATION
 
 def tip(bot, update, user_data):
     text = update.message.text
-    user_data['userlocation'] = text
-    update.message.reply_text('How much would you like to tip your hitcher?\n(E.g. $5, $10)')
-    return FINALIZE
+    if (len(text) > 3 and len(text) < 31):
+        user_data['userlocation'] = text
+        update.message.reply_text('How much would you like to tip your hitcher?\n(E.g. 5, 10) without the $ sign.')
+        return FINALIZE
+    else:
+        update.message.reply_text("Your input is less than 4 characters. Please try again!")
+        update.message.reply_text(
+            'Where would you like to order it from?\n(Between 4 to 30 characters. E.g. North Spine Plaza, Canteen 14..)')
+        return TIP
 
 def finalize(bot, update, user_data):
     text = update.message.text
-    user_data['tip'] = text
-    set.send_message('Food: <b>{}</b> from <b>{}</b> at <b>{}</b> to <b>{}</b> with a tip of <b>{}</b>.'.format(user_data["food"], user_data["location"], user_data["time"], user_data["userlocation"], user_data["tip"]), update.message.chat.id)
-    update.message.reply_text('Confirm order?', reply_markup=markup3)
-    return CONFIRM
+    if (bots.checkInt(text)):
+        if (int(text) > 0 and int(text) < 500):
+            user_data['tip'] = text
+            set.send_message('Food: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}</b>\nDeliver to: <b>{}</b>\nTip: <b>${}</b>'.format(user_data["food"], user_data["location"], bots.convertToReadable(user_data["time"]), user_data["userlocation"], user_data["tip"]), update.message.chat.id)
+            update.message.reply_text('Confirm order?', reply_markup=markup3)
+            return CONFIRM
+        else:
+            update.message.reply_text('Please enter an amount between 1 and 500!')
+            update.message.reply_text('How much would you like to tip your hitcher?\n(E.g. 5, 10) without the $ sign.')
+            return FINALIZE
+    else:
+        update.message.reply_text('Please enter a valid number!')
+        update.message.reply_text('How much would you like to tip your hitcher?\n(E.g. 5, 10) without the $ sign.')
+        return FINALIZE
 
 
 def addorder(bot, update, user_data):
@@ -231,12 +272,13 @@ def confirmedorders(bot, update):
         update.message.reply_text('Here are your pending orders!')
         set.send_message(bots.getPendingOrdersByUsername(update.message.chat.username), update.message.chat.id)
         update.message.reply_text('Please enter order ID that you would like to cancel or tap on /home to return to home page.')
+        return CANCEL
     else:
         update.message.reply_text('You have not accepted any orders yet!')
         update.message.reply_text('Thank you for making hungry people happy! \nPlease choose an option:',
                                   reply_markup=markup4)
         return SUBMENUHITCHER
-    return CANCEL
+
 
 def cancelorders(bot, update, user_data):
     text = update.message.text
@@ -285,8 +327,8 @@ def help(bot, update):
 ### Main ###
 def main():
     db.setup()
-    #updater = Updater("387099409:AAFmM5sismztGNYvfUo388Bn9QeEhUUcce8")  # Dev environment
-    updater = Updater("422679288:AAFmt0jTQIUs-9aZkTMCJ2AhDHWDaToYk3Y") # Updater takes in bot token, runs in separate thread and handles updates from different telegram users.
+    updater = Updater("387099409:AAFmM5sismztGNYvfUo388Bn9QeEhUUcce8")  # Dev environment
+    #updater = Updater("422679288:AAFmt0jTQIUs-9aZkTMCJ2AhDHWDaToYk3Y") # Updater takes in bot token, runs in separate thread and handles updates from different telegram users.
     dp = updater.dispatcher
     conv_handler = ConversationHandler( #Handles different commands, states. For e.g. "Food Hitchee" Is under MENU state
         entry_points=[CommandHandler('start', start)],

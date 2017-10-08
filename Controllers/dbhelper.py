@@ -116,11 +116,25 @@ class DBHelper:
         self.conn.commit()
         return result
 
+    def removeExpiredOrders(self, datetime):
+        stmt = "DELETE FROM orders WHERE time = (?)"
+        args = (datetime,)
+        self.conn.execute(stmt, args)
+        self.conn.commit()
+
     def removePlacedOrder(self, order_id):
         stmt = "DELETE FROM orders WHERE order_id = (?)"
         args = (order_id,)
         self.conn.execute(stmt, args)
         self.conn.commit()
+
+    ## To be done
+    def checkNumOfOrders(self, chatid):
+        stmt = "SELECT * FROM orders WHERE chat_id = (?)"
+        args = (chatid,)
+        count = self.conn.execute(stmt, args)
+        self.conn.commit()
+        return count
 
     # 0 - Available
     # 1 - Pending order

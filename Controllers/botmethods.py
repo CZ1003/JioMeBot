@@ -1,5 +1,6 @@
 from Controllers.dbhelper import DBHelper
-
+from dateutil.parser import parse
+import datetime
 db = DBHelper()
 
 class botmethods:
@@ -10,7 +11,7 @@ class botmethods:
         message = None
         list = []
         for (a, b, c, d, e, f) in db.get_all_orders():  ##
-            list.append('ID: <b>{}</b> Food: <b>{}</b> from <b>{}</b> - Time: <b>{}</b> Deliver to: <b>{}</b> - Tip: <b>{}</b>'.format(a, b, c, d, e, f))
+            list.append('ID: <b>{}</b> Food: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}</b>\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\n----------------------------------------'.format(a, b, c, self.convertStringToDateFromDB(d), e, f))
             message = "\n".join(list) + '\n\nPlease key in a valid order ID to accept or tap on /home to return to home page.'
         if not list:
             message = "There are currently no orders!"
@@ -20,23 +21,27 @@ class botmethods:
         message = None
         list = []
         for (a, b, c, d, e, f) in db.get_order(chat):  ##
-                list.append('ID: <b>{}</b> Food: <b>{}</b> from <b>{}</b> - Time: <b>{}</b> Deliver to: <b>{}</b> - Tip: <b>{}</b>'.format(a, b, c, d, e, f))
-                message = "\n".join(list)
+            list.append('ID: <b>{}</b> Food: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}</b>\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\n----------------------------------------'.format(a, b, c, self.convertStringToDateFromDB(d), e, f))
+            message = "\n".join(list)
         return message
 
     def getPendingOrdersByChatID(self, chat):  # Function to get order by ID
         message = None
         list = []
         for (a, b, c, d, e, f) in db.get_order(chat):  ##
-                list.append('ID: <b>{}</b> Food: <b>{}</b> from <b>{}</b> - Time: <b>{}</b> Deliver to: <b>{}</b> - Tip: <b>{}</b>'.format(a, b, c, d, e, f))
-                message = "\n".join(list)
+            list.append(
+                'ID: <b>{}</b> Food: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}</b>\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\n----------------------------------------'.format(
+                    a, b, c, self.convertStringToDateFromDB(d), e, f))
+            message = "\n".join(list)
         return message
 
     def getOrderByOrderID(self, orderId):  # Function to get order by ID
         message = None
         list = []
         for (a, b, c, d, e, f) in db.getOrderByOrderID(orderId):  ##
-            list.append('ID: <b>{}</b> Food: <b>{}</b> from <b>{}</b> - Time: <b>{}</b> Deliver to: <b>{}</b> - Tip: <b>{}</b>'.format(a, b, c, d, e, f))
+            list.append(
+                'ID: <b>{}</b> Food: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}</b>\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\n----------------------------------------'.format(
+                    a, b, c, self.convertStringToDateFromDB(d), e, f))
             message = "\n".join(list)
         return message
 
@@ -68,7 +73,9 @@ class botmethods:
         message = None
         list = []
         for (a, b,c, d, e, f) in db.getPendingOrdersByUsername(username):  ##
-            list.append('ID: <b>{}</b> Food: <b>{}</b> from <b>{}</b> - Time: <b>{}</b> Deliver to: <b>{}</b> - Tip: <b>{}</b>'.format(a, b, c, d, e, f))
+            list.append(
+                'ID: <b>{}</b> Food: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}</b>\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\n----------------------------------------'.format(
+                    a, b, c, self.convertStringToDateFromDB(d), e, f))
             message = "\n".join(list)
         return message
 
@@ -84,16 +91,20 @@ class botmethods:
         message = None
         list = []
         for (a, b,c, d, e, f) in db.get_unconfirmed_orders_by_chat_id(chat_id):  ##
-            list.append('ID: <b>{}</b> Food: <b>{}</b> from <b>{}</b> - Time: <b>{}</b> Deliver to: <b>{}</b> - Tip: <b>{}</b>'.format(a, b, c, d, e, f))
-            message = "\n".join(list) + '\n\nPlease key in a valid order ID to remove or tap on /home to return to home page.'
+            list.append(
+                'ID: <b>{}</b> Food: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}</b>\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\n----------------------------------------'.format(
+                    a, b, c, self.convertStringToDateFromDB(d), e, f))
+            message = "\n".join(list) + '\n\nPlease key in a valid order ID to delete or tap on /home to return to home page.'
         return message
 
     def getPendingOrdersByChatID(self, chatId):  # Function to get order by ID
         message = None
         list = []
         for (a, b, c, d, e,f, g) in db.get_all_pendingorders_by_chat_id(chatId):  ##
-            list.append('ID: <b>{}</b> Food: <b>{}</b> from <b>{}</b> - Time: <b>{}</b> Deliver to: <b>{}</b> - Tip: <b>{}</b> - Sender: @{}'.format(a, b, c, d, e, f, g))
-            message = "\n".join(list) + '\n\nPlease key in a valid order ID to cancel or tap on /home to return to home page.'
+            list.append(
+                'ID: <b>{}</b> Food: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}</b>\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\nSender usernname: <b>@{}</b>\n----------------------------------------'.format(
+                    a, b, c, self.convertStringToDateFromDB(d), e, f, g))
+            message = "\n".join(list)
         return message
 
 ### Checking ###
@@ -159,3 +170,50 @@ class botmethods:
             except ValueError:
                 return success
         return success
+
+    def checkInt(self, i):
+        try:
+            int(i)
+            return True
+        except ValueError:
+            return False
+
+    def checkDate(self, i):
+        try:
+           parse(i)
+           return True
+        except ValueError:
+           return False
+
+    def checkDateFormat(self, i):
+        try:
+            datetime.datetime.strptime(i, '%d %b %Y %I:%M%p')
+            return True
+        except ValueError:
+            return False
+
+    def convertToReadable(self, i):
+        try:
+            return datetime.datetime.strftime(i, '%d %b %Y %I:%M%p')
+        except ValueError:
+            return False
+
+    def convertStringToDateFromDB(self, i):
+        try:
+            date = datetime.datetime.strptime(i, '%Y-%m-%d %H:%M:%S')
+            return datetime.datetime.strftime(date, '%d %b %Y %I:%M%p')
+        except ValueError:
+            return False
+
+    def convertStringToDate(self, i):
+        try:
+            return datetime.datetime.strptime(i, '%d %b %Y %I:%M%p')
+        except ValueError:
+            return False
+
+    def removeExpiredOrders(self):
+            for (a, b, c, d, e, f) in db.get_all_orders():  ##
+                date = datetime.datetime.strptime(d, '%Y-%m-%d %H:%M:%S')
+                if (datetime.datetime.now() > date):
+                     db.removeExpiredOrders(d)
+
