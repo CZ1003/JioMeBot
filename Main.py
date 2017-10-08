@@ -46,7 +46,7 @@ def start(bot, update):
         update.message.reply_text(
             "Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
             reply_markup=markup)
-        bots.removeExpiredOrders() #NOT elegant, might slow database down abit. TBD...
+       # bots.removeExpiredOrders() #NOT elegant, might slow database down abit. TBD...
        # db.checkNumOfOrders(update.message.chat.id) ## To be done..
         return MENU
 
