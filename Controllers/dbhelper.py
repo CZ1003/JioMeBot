@@ -76,7 +76,7 @@ class DBHelper:
         return result
 
     def getPendingOrdersByUsername(self, username):
-        stmt = "SELECT order_id, food, location, time,user_location, tip  FROM orders where sender_username = (?) AND status = 1"
+        stmt = "SELECT order_id, food, location, time,user_location, tip, receiver_username  FROM orders where sender_username = (?) AND status = 1"
         args = (username,)
         result = (x for x in self.conn.execute(stmt, args))
         self.conn.commit()
