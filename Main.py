@@ -112,7 +112,7 @@ def tip(bot, update, user_data):
     text = update.message.text
     if (len(text) > 3 and len(text) < 31):
         user_data['userlocation'] = text
-        update.message.reply_text('How much would you like to tip your hitcher?\n(E.g. 5, 10) without the $ sign.')
+        update.message.reply_text('How much would you like to tip your hitcher?\n(E.g. 2, 3.5) without the $ sign.')
         return FINALIZE
     else:
         update.message.reply_text("Your input is less than 4 characters. Please try again!")
