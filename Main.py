@@ -122,19 +122,19 @@ def tip(bot, update, user_data):
 
 def finalize(bot, update, user_data):
     text = update.message.text
-    if (bots.checkInt(text)):
-        if (int(text) > 0 and int(text) < 500):
+    if (bots.parseFloat(text)):
+        if (int(text) > 0 and int(text) < 50):
             user_data['tip'] = text
-            set.send_message('Food: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}</b>\nDeliver to: <b>{}</b>\nTip: <b>${}</b>'.format(user_data["food"], user_data["location"], bots.convertToReadable(user_data["time"]), user_data["userlocation"], user_data["tip"]), update.message.chat.id)
+            set.send_message('Food: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}</b>hrs\nDeliver to: <b>{}</b>\nTip: <b>${}</b>'.format(user_data["food"], user_data["location"], bots.convertToReadable(user_data["time"]), user_data["userlocation"], user_data["tip"]), update.message.chat.id)
             update.message.reply_text('Confirm order?', reply_markup=markup3)
             return CONFIRM
         else:
-            update.message.reply_text('Please enter an amount between 1 and 500!')
-            update.message.reply_text('How much would you like to tip your hitcher?\n(E.g. 5, 10) without the $ sign.')
+            update.message.reply_text('Please enter an amount between 1 and 50!')
+            update.message.reply_text('How much would you like to tip your hitcher?\n(E.g. 2, 3.5) without the $ sign.')
             return FINALIZE
     else:
         update.message.reply_text('Please enter a valid number!')
-        update.message.reply_text('How much would you like to tip your hitcher?\n(E.g. 5, 10) without the $ sign.')
+        update.message.reply_text('How much would you like to tip your hitcher?\n(E.g. 2, 3.5) without the $ sign.')
         return FINALIZE
 
 
