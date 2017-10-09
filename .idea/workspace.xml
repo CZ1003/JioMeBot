@@ -4,7 +4,10 @@
     <bookmark url="file://$PROJECT_DIR$/Controllers/botmethods.py" line="102" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e752b6fb-253d-4c58-ab7f-3b6b0ee32199" name="Default" comment="" />
+    <list default="true" id="e752b6fb-253d-4c58-ab7f-3b6b0ee32199" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,14 +39,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="botmethods.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="botmethods.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controllers/botmethods.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="23" lean-forward="false" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+            <state relative-caret-position="119">
+              <caret line="7" column="12" lean-forward="false" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="requirements.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/requirements.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -107,6 +120,7 @@
         <option value="$PROJECT_DIR$/Controllers/settings.py" />
         <option value="$PROJECT_DIR$/Main.py" />
         <option value="$PROJECT_DIR$/Controllers/botmethods.py" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
       </list>
     </option>
   </component>
@@ -328,7 +342,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507490613808</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Update requirement.txt">
+      <created>1507511675904</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1507511675905</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -371,7 +392,8 @@
     <MESSAGE value="Added cancellation for both Hitchee and Hitcher&#10;Added tip&#10;Added View placed/pending orders for Hitchee, View confirmed orders for Hitcher&#10;Fixed some bugs&#10;TBD: Reporting users, order expiry, more validations" />
     <MESSAGE value="Added input validations for placing orders&#10;Added proper datetime functions. Validations too.&#10;Added orders to be automatically removed once expires." />
     <MESSAGE value="Push to test for deployment purposes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Push to test for deployment purposes" />
+    <MESSAGE value="Update requirement.txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update requirement.txt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -495,11 +517,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Controllers/botmethods.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="23" lean-forward="false" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+        <state relative-caret-position="119">
+          <caret line="7" column="12" lean-forward="false" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
