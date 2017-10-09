@@ -99,7 +99,7 @@ def userlocation(bot, update, user_data):
         else:
             update.message.reply_text('Sorry! Your order has to be at least 30 minutes after current time up to a week''s advance booking.')
             update.message.reply_text(
-                'What date and time would you like the food to be sent at?(In DD MMM YYYY HH:MM in 24hrs format)\n(E.g. 24 Sep 2017 2:20PM, 26/09/2017 3:50AM)')
+                'What date and time would you like the food to be sent at?(In DD MMM YYYY HH:MM in 24hrs format)\n(E.g. 25 Oct 2017 2:20PM, 26 Oct 2017 3:50AM)You can make an order for 30 minutes after current time or up to 1 week in advance!\n')
             return USERLOCATION
     else:
         update.message.reply_text('Sorry, invalid date or time! Please try again.')
