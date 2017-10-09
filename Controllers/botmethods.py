@@ -11,7 +11,7 @@ class botmethods:
         message = None
         list = []
         for (a, b, c, d, e, f) in db.get_all_orders():  ##
-            list.append('ID: <b>{}</b>\nFood: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}</b>hrs\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\n----------------------------------------'.format(a, b, c, self.convertStringToDateFromDB(d), e, f))
+            list.append('ID: <b>{}</b>\nFood: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}hrs</b>\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\n----------------------------------------'.format(a, b, c, self.convertStringToDateFromDB(d), e, f))
             message = "\n".join(list) + '\n\nPlease key in a valid order ID to accept or tap on /home to return to home page.'
         if not list:
             message = "There are currently no orders!"
@@ -21,7 +21,7 @@ class botmethods:
         message = None
         list = []
         for (a, b, c, d, e, f) in db.get_order(chat):  ##
-            list.append('ID: <b>{}</b>\nFood: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}</b>hrs\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\n----------------------------------------'.format(a, b, c, self.convertStringToDateFromDB(d), e, f))
+            list.append('ID: <b>{}</b>\nFood: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}hrs</b>\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\n----------------------------------------'.format(a, b, c, self.convertStringToDateFromDB(d), e, f))
             message = "\n".join(list)
         return message
 
@@ -30,7 +30,7 @@ class botmethods:
         list = []
         for (a, b, c, d, e, f) in db.get_order(chat):  ##
             list.append(
-                'ID: <b>{}</b>\nFood: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}</b>hrs\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\n----------------------------------------'.format(
+                'ID: <b>{}</b>\nFood: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}hrs</b>\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\n----------------------------------------'.format(
                     a, b, c, self.convertStringToDateFromDB(d), e, f))
             message = "\n".join(list)
         return message
@@ -40,7 +40,7 @@ class botmethods:
         list = []
         for (a, b, c, d, e, f) in db.getOrderByOrderID(orderId):  ##
             list.append(
-                'ID: <b>{}</b>\nFood: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}</b>hrs\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\n----------------------------------------'.format(
+                'ID: <b>{}</b>\nFood: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}hrs</b>\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\n----------------------------------------'.format(
                     a, b, c, self.convertStringToDateFromDB(d), e, f))
             message = "\n".join(list)
         return message
@@ -74,7 +74,7 @@ class botmethods:
         list = []
         for (a, b,c, d, e, f, g) in db.getPendingOrdersByUsername(username):  ##
             list.append(
-                'ID: <b>{}</b>\nFood: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}</b>hrs\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\nReceiver''s username: @{}\n----------------------------------------'.format(
+                'ID: <b>{}</b>\nFood: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}hrs</b>\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\nReceiver''s username: @{}\n----------------------------------------'.format(
                     a, b, c, self.convertStringToDateFromDB(d), e, f, g))
             message = "\n".join(list)
         return message
@@ -92,7 +92,7 @@ class botmethods:
         list = []
         for (a, b,c, d, e, f) in db.get_unconfirmed_orders_by_chat_id(chat_id):  ##
             list.append(
-                'ID: <b>{}</b>\nFood: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}</b>hrs\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\n----------------------------------------'.format(
+                'ID: <b>{}</b>\nFood: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}hrs</b>\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\n----------------------------------------'.format(
                     a, b, c, self.convertStringToDateFromDB(d), e, f))
             message = "\n".join(list) + '\n\nPlease key in a valid order ID to delete or tap on /home to return to home page.'
         return message
