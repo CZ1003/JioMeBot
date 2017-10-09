@@ -123,7 +123,7 @@ class DBHelper:
         self.conn.commit()
 
     def removePlacedOrder(self, order_id):
-        stmt = "DELETE FROM orders WHERE order_id = (?)"
+        stmt = "DELETE FROM orders WHERE order_id = (?) and status = 0"
         args = (order_id,)
         self.conn.execute(stmt, args)
         self.conn.commit()
