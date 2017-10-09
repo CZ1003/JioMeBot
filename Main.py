@@ -80,7 +80,7 @@ def time(bot, update, user_data):
     if (len(text) > 3 and len(text) < 31):
         user_data['location'] = text
         update.message.reply_text(
-            'What date and time would you like the food to be sent at?(In DD MMM YYYY HH:MM in 24hrs format)\n(E.g. 25 Oct 2017 14:20)\nYou can make an order for 30 minutes after current time or up to 1 week in advance!\n')
+            'What date and time would you like the food to be sent at?(In DD MMM YYYY HHMM in 24hrs format)\n(E.g. 25 Oct 2017 1420)\nYou can make an order for 30 minutes after current time or up to 1 week in advance!\n')
         return USERLOCATION
     else:
         update.message.reply_text("Your input is less than 4 characters. Please try again!")
@@ -100,12 +100,12 @@ def userlocation(bot, update, user_data):
         else:
             update.message.reply_text('Sorry! Your order has to be at least 30 minutes after current time up to a week''s advance booking.')
             update.message.reply_text(
-                'What date and time would you like the food to be sent at?(In DD MMM YYYY HH:MM in 24hrs format)\n(E.g. 25 Oct 2017 14:20)\nYou can make an order for 30 minutes after current time or up to 1 week in advance!\n')
+                'What date and time would you like the food to be sent at?(In DD MMM YYYY HHMM in 24hrs format)\n(E.g. 25 Oct 2017 1420)\nYou can make an order for 30 minutes after current time or up to 1 week in advance!\n')
             return USERLOCATION
     else:
         update.message.reply_text('Sorry, invalid date or time! Please try again.')
         update.message.reply_text(
-            'What date and time would you like the food to be sent at?(In DD MMM YYYY HH:MM in 24hrs format)\n(E.g. 25 Oct 2017 14:20)\nYou can make an order for 30 minutes after current time or up to 1 week in advance!\n')
+            'What date and time would you like the food to be sent at?(In DD MMM YYYY HHMM in 24hrs format)\n(E.g. 25 Oct 2017 1420)\nYou can make an order for 30 minutes after current time or up to 1 week in advance!\n')
         return USERLOCATION
 
 def tip(bot, update, user_data):

@@ -187,27 +187,27 @@ class botmethods:
 
     def checkDateFormat(self, i):
         try:
-            datetime.datetime.strptime(i, '%d %b %Y %H %M')
+            datetime.datetime.strptime(i, '%d %b %Y %H%M')
             return True
         except ValueError:
             return False
 
     def convertToReadable(self, i):
         try:
-            return datetime.datetime.strftime(i, '%d %b %Y %H %M')
+            return datetime.datetime.strftime(i, '%d %b %Y %H%M')
         except ValueError:
             return False
 
     def convertStringToDateFromDB(self, i):
         try:
             date = datetime.datetime.strptime(i, '%Y-%m-%d %H:%M:%S')
-            return datetime.datetime.strftime(date, '%d %b %Y %H %M')
+            return datetime.datetime.strftime(date, '%d %b %Y %H%M')
         except ValueError:
             return False
 
     def convertStringToDate(self, i):
         try:
-            return datetime.datetime.strptime(i, '%d %b %Y %H %M')
+            return datetime.datetime.strptime(i, '%d %b %Y %H%M')
         except ValueError:
             return False
 
