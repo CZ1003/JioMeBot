@@ -79,7 +79,8 @@ def time(bot, update, user_data):
     text = update.message.text
     if (len(text) > 3 and len(text) < 31):
         user_data['location'] = text
-        update.message.reply_text('What date and time would you like the food to be sent at?\n(In DD MMM YYYY HH:MM in 12hrs format)\n(E.g. 24 Sep 2017 2:20PM, 26/09/2017 3:50AM)')
+        update.message.reply_text(
+            'What date and time would you like the food to be sent at?(In DD MMM YYYY HH:MM in 24hrs format)\n(E.g. 25 Oct 2017 2:20PM, 26 Oct 2017 3:50AM)You can make an order for 30 minutes after current time or up to 1 week in advance!\n')
         return USERLOCATION
     else:
         update.message.reply_text("Your input is less than 4 characters. Please try again!")
@@ -104,7 +105,7 @@ def userlocation(bot, update, user_data):
     else:
         update.message.reply_text('Sorry, invalid date or time! Please try again.')
         update.message.reply_text(
-            'What date and time would you like the food to be sent at?\n(In DD MMM YYYY HH:MM in 24hrs format)\n(E.g. 24 Sep 2017 2:20PM, 26/09/2017 3:50AM)')
+            'What date and time would you like the food to be sent at?(In DD MMM YYYY HH:MM in 24hrs format)\n(E.g. 25 Oct 2017 2:20PM, 26 Oct 2017 3:50AM)You can make an order for 30 minutes after current time or up to 1 week in advance!\n')
         return USERLOCATION
 
 def tip(bot, update, user_data):
