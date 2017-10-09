@@ -89,7 +89,7 @@ def time(bot, update, user_data):
 
 def userlocation(bot, update, user_data):
     text = update.message.text
-    if (bots.checkDate(text) and bots.checkDateFormat(text)):
+    if (bots.checkDateFormat(text)):
         date = bots.convertStringToDate(text)
         future = date.now() + timedelta(minutes = 30)
         inbetween = date.now() + timedelta(weeks = 1)
