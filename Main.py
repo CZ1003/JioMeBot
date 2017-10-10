@@ -101,7 +101,7 @@ def userlocation(bot, update, user_data):
         inbetween = singaporecurrtime + timedelta(days = 7)
         if (singaporedate >= future and singaporedate <= inbetween):
             user_data['time'] = dateinput
-            print('Input from date: ' + dateinput)
+            print('Input from date: ' + str(dateinput))
             print('Current Time: ' + singaporecurrtime)
             print('Input into singapore timezone' + singaporedate)
             print('Input 1 week after current time: ' + inbetween)
