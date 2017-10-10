@@ -91,7 +91,7 @@ def userlocation(bot, update, user_data):
     text = update.message.text
     if (bots.checkDateFormat(text)):
         date = bots.convertStringToDate(text)
-        singapore = pytz.timezone('Asia/Singapore')
+        singapore = pytz.timezone('Asia/Kuala_Lumpur')
         singaporedate = date.astimezone(singapore)
         singaporecurrtime = date.now().astimezone(singapore)
         future = singaporecurrtime + timedelta(minutes = 30)
