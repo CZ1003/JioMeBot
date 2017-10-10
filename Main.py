@@ -234,7 +234,7 @@ def acceptorder(bot, update, user_data):
     text = update.message.text
     user_data['choice'] = text
     if bots.checkOrders(user_data['choice']) == 'SUCCESSFUL':
-        if update.message.chat.id == bots.getChatIdByOrderId(user_data['choice']):
+        if update.message.chat.id != bots.getChatIdByOrderId(user_data['choice']):
             bots.checkOrders(user_data['choice'])
             update.message.reply_text('Please confirm following order to be accepted:', reply_markup=markup3)
             set.send_message(bots.getOrderByOrderID(user_data['choice']), update.message.chat.id)
