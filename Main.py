@@ -371,7 +371,7 @@ def main():
         states={
             MENU: [RegexHandler('^('+ emoji.emojize(':hamburger: Feed myself!')+')$',
                                 foodhitchee),
-                   RegexHandler('^(Help feed others!)$',
+                   RegexHandler('^('+ emoji.emojize(':bicyclist: Help feed others!')+')$',
                                 foodhitcher),
                    RegexHandler('^(Help)$',help)],
             #### Food Hitchee ####
