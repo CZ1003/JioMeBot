@@ -439,7 +439,7 @@ def main():
         },
 
         fallbacks=[CommandHandler('cancel', cancel, pass_user_data=True), #These commands are to terminate, return or more specifically do something if the other states return "FALSE".
-                   RegexHandler('^Main Menu$', cancel, pass_user_data=True),
+                   RegexHandler('^Main Menu$', start),
                    CommandHandler('home', start)]
     )
 
