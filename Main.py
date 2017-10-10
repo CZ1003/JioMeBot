@@ -235,10 +235,16 @@ def acceptorder(bot, update, user_data):
     text = update.message.text
     user_data['choice'] = text
     if bots.checkOrders(user_data['choice']) == 'SUCCESSFUL':
-        bots.checkOrders(user_data['choice'])
-        update.message.reply_text('Please confirm following order to be accepted:', reply_markup=markup3)
-        set.send_message(bots.getOrderByOrderID(user_data['choice']), update.message.chat.id)
-        return DELIVERCONFIRM
+        if update.message.chat.id == bots.getChatIdByOrderId(user_data['choice']):
+            bots.checkOrders(user_data['choice'])
+            update.message.reply_text('Please confirm following order to be accepted:', reply_markup=markup3)
+            set.send_message(bots.getOrderByOrderID(user_data['choice']), update.message.chat.id)
+            return DELIVERCONFIRM
+        else:
+            update.message.reply_text('You cannot accept your own order! Please try again.')
+            update.message.reply_text('Here''s a list of existing orders!')
+            set.send_message(bots.getAllOrders(), update.message.chat.id)
+            return ACCEPT
     else:
         update.message.reply_text('Invalid Order ID! Please try again.')
         update.message.reply_text('Here''s a list of existing orders!')
@@ -364,9 +370,9 @@ def main():
         entry_points=[CommandHandler('start', start)],
 
         states={
-            MENU: [RegexHandler('^(Feed myself)$',
+            MENU: [RegexHandler('^(Feed myself!)$',
                                 foodhitchee),
-                   RegexHandler('^(Help feed others)$',
+                   RegexHandler('^(Help feed others!)$',
                                 foodhitcher),
                    RegexHandler('^(Help)$',
                                 help)
