@@ -13,7 +13,7 @@ bots = botmethods()
 set = settings()
 db = DBHelper()
 
-reply_keyboard = [['Feed myself'], ['Help feed others'],
+reply_keyboard = [['Feed myself!'], ['Help feed others!'],
                   ['Help'], ['End']]
 
 markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
@@ -44,7 +44,7 @@ logger = logging.getLogger(__name__)
 def start(bot, update):
     if  update.message.chat.username is None:
         update.message.reply_text(
-            "Hello and welcome to FoodHitch!\nIt seems like you do not have a Telegram Username.\nIn order to process your orders and ensure that communication between you and the deliverer is smooth, a username is needed.\nPlease create a Telegram Username before using me, thank you!\n(You can set your username in Settings.)")
+            "Hello and welcome to FoodHitch!\nIt seems like you do not have a Telegram Username.\n\nIn order to process your orders and ensure that communication between you and the deliverer is smooth, a username is needed.\n\nPlease create a Telegram Username before using me, thank you!\n(You can set your username in Settings.)")
     else:
         update.message.reply_text(
             "Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
