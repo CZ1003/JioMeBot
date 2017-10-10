@@ -97,7 +97,7 @@ def userlocation(bot, update, user_data):
         singaporedate = dateinput.astimezone(singapore) - timedelta(hours = 8) # Delivery time
 
         singaporecurrtime = datetime.now().astimezone(singapore)
-        future = singaporecurrtime + timedelta(minutes = 30)
+        future = singaporecurrtime + timedelta(minutes = 1)
         inbetween = singaporecurrtime + timedelta(days = 7)
         if (singaporedate >= future and singaporedate <= inbetween):
             user_data['time'] = dateinput
