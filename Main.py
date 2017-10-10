@@ -98,20 +98,20 @@ def userlocation(bot, update, user_data):
 
         singaporecurrtime = datetime.now().astimezone(singapore)
         future = singaporecurrtime + timedelta(minutes = 30)
-        inbetween = singaporecurrtime + timedelta(days = 7)
+        inbetween = singaporecurrtime + timedelta(hours = 48)
         if (singaporedate >= future and singaporedate <= inbetween):
             user_data['time'] = dateinput
             update.message.reply_text('Where would you like the food to be delivered to?\n(Between 4 to 30 characters. E.g. Hall 12, LT13..)')
             return TIP
         else:
-            update.message.reply_text('Sorry! Your order has to be at least 30 minutes after current time up to a week''s advance booking.')
+            update.message.reply_text('Sorry! Your order has to be at least 30 minutes after current time up to 48 hours of advance booking.')
             update.message.reply_text(
-                'What date and time would you like the food to be sent at?(In DD MMM YYYY HHMM in 24hrs format)\n(E.g. 25 Oct 2017 1420)\nYou can make an order for 30 minutes after current time or up to 1 week in advance!\n')
+                'What date and time would you like the food to be sent at?(In DD MMM YYYY HHMM in 24hrs format)\n(E.g. 25 Oct 2017 1420)\nYou can make an order for 30 minutes after current time or up to 48 hours of advance booking.\n')
             return USERLOCATION
     else:
         update.message.reply_text('Sorry, invalid date or time! Please try again.')
         update.message.reply_text(
-            'What date and time would you like the food to be sent at?(In DD MMM YYYY HHMM in 24hrs format)\n(E.g. 25 Oct 2017 1420)\nYou can make an order for 30 minutes after current time or up to 1 week in advance!\n')
+            'What date and time would you like the food to be sent at?(In DD MMM YYYY HHMM in 24hrs format)\n(E.g. 25 Oct 2017 1420)\nYou can make an order for 30 minutes after current time or up to 48 hours of advance booking.\n')
         return USERLOCATION
 
 def tip(bot, update, user_data):
@@ -149,9 +149,9 @@ def addorder(bot, update, user_data):
     username = update.message.chat.username
     db.add_order(userid, user_data["location"], user_data["food"], user_data["userlocation"], user_data["time"],
                  username, user_data["tip"])
-    update.message.reply_text(
-        'Your order of {} from {} has been entered into the database!\nGood luck in getting a Food Hitch!'.format(
-            user_data["food"], user_data["location"]))
+    set.send_message(
+        'Your order of <b>{}</b> from <b>{}</b> has been entered into the database!\nGood luck in getting a Food Hitch!'.format(
+            user_data["food"], user_data["location"]), userid)
     user_data.clear()
     update.message.reply_text(
         "Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
