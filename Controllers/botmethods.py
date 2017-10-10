@@ -134,7 +134,7 @@ class botmethods:
 
     def checkOrders(self, orderId):  # Function to get all orders
         success = "UNSUCCESSFUL"
-        for (a, b, c, d, e, f) in db.get_all_orders():  ##
+        for (a, b, c, d, e, f, g) in db.get_all_orders():  ##
             try:
                 orderidparse = int(orderId)
                 if a == orderidparse:
