@@ -13,8 +13,7 @@ bots = botmethods()
 set = settings()
 db = DBHelper()
 
-reply_keyboard = [['Feed myself!'], ['Help feed others!'],
-                  ['Help'], ['End']]
+reply_keyboard = [['Feed myself!'], ['Help feed others!'], ['End']]
 
 markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
 
@@ -47,7 +46,8 @@ def start(bot, update):
             "Hello and welcome to FoodHitch!\nIt seems like you do not have a Telegram Username.\n\nIn order to process your orders and ensure that communication between you and the deliverer is smooth, a username is needed.\n\nPlease create a Telegram Username before using me, thank you!\n(You can set your username in Settings.)")
     else:
         update.message.reply_text(
-            "Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
+            "Welcome to FoodHitch, a goodwill based delivery system!\n' \
+                              'You can choose to either place an order, or fulfill an order in return for a small tip.(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
             reply_markup=markup)
         bots.removeExpiredOrders() #NOT elegant, might slow database down abit. TBD...
        # db.checkNumOfOrders(update.message.chat.id) ## To be done..
