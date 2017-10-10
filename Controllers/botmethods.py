@@ -226,6 +226,7 @@ class botmethods:
                      set.send_message("has expired! Please place a new order.", a)
                      db.removeExpiredOrders(e)
 
+
     def removeExpiredOrdersCompleted(self, username):
             for (a, b, c, d, e, f, g, h) in db.getPendingOrdersByUsernameForRemoval(username):  ##
                 date = datetime.strptime(e, '%Y-%m-%d %H:%M:%S')
