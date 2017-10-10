@@ -137,7 +137,7 @@ class botmethods:
         for (a, b, c, d, e, f, g) in db.get_all_orders():  ##
             try:
                 orderidparse = int(orderId)
-                if a == orderidparse:
+                if b == orderidparse:
                     success = "SUCCESSFUL"
                     return success
                 else:
