@@ -92,11 +92,11 @@ def userlocation(bot, update, user_data):
     if (bots.checkDateFormat(text)):
         dateinput = bots.convertStringToDate(text)
         singapore = pytz.timezone('Asia/Singapore')
-       # singaporedate = date.astimezone(singapore)
+        singaporedate = dateinput.astimezone(singapore)
         singaporecurrtime = datetime.now().astimezone(singapore)
         future = singaporecurrtime + timedelta(minutes = 30)
         inbetween = singaporecurrtime + timedelta(weeks = 1)
-        if (dateinput >= future and dateinput <= inbetween):
+        if (singaporedate >= future and singaporedate <= inbetween):
             user_data['time'] = dateinput
             update.message.reply_text('Where would you like the food to be delivered to?\n(Between 4 to 30 characters. E.g. Hall 12, LT13..)')
             return TIP
