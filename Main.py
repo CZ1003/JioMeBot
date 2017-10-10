@@ -92,8 +92,9 @@ def userlocation(bot, update, user_data):
     if (bots.checkDateFormat(text)):
         dateinput = bots.convertStringToDate(text)
         singapore = pytz.timezone('Asia/Singapore')
+        UTC0 = pytz.timezone('Europe/Denmark')
         singaporedate = dateinput.astimezone(singapore)
-        singaporecurrtime = datetime.now().astimezone(singapore)
+        singaporecurrtime = datetime.now().astimezone(UTC0)
         future = singaporecurrtime + timedelta(minutes = 30)
         inbetween = singaporecurrtime + timedelta(weeks = 1)
         if (singaporedate >= future and singaporedate <= inbetween):
