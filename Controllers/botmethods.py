@@ -13,7 +13,7 @@ class botmethods:
     def getAllPlacedOrders(self, chatid): #Function to get all orders
         message = None
         list = []
-        for (a, b, c, d, e, f) in db.get_all_orders():  ##
+        for (a, b, c, d, e, f) in db.get_all_placedorderswithoutownorder(chatid):  ##
             list.append('ID: <b>{}</b>\nFood: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}hrs</b>\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\n----------------------------------------'.format(a, b, c, self.convertStringToDateFromDB(d), e, f))
             message = "\n".join(list) + '\n\nPlease key in a valid order ID to accept or tap on /home to return to home page.'
         if not list:
