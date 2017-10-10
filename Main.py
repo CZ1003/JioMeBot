@@ -97,7 +97,7 @@ def userlocation(bot, update, user_data):
         singaporedate = dateinput.astimezone(singapore) - timedelta(hours = 8) # Delivery time
 
         singaporecurrtime = datetime.now().astimezone(singapore)
-        future = singaporecurrtime + timedelta(minutes = 1)
+        future = singaporecurrtime + timedelta(minutes = 30)
         inbetween = singaporecurrtime + timedelta(days = 7)
         if (singaporedate >= future and singaporedate <= inbetween):
             user_data['time'] = dateinput
@@ -164,6 +164,7 @@ def repeatorder(bot, update, user_data):
     return SUBMENUHITCHEE
 
 def placedorders(bot, update):
+    bots.removeExpiredOrders()
     placedorders = bots.getUnconfirmedOrdersByChatID(update.message.chat.id)
     if placedorders is not None:
         update.message.reply_text('Here''s a list of your placed orders!')
