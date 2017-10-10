@@ -13,7 +13,7 @@ bots = botmethods()
 set = settings()
 db = DBHelper()
 
-reply_keyboard = [['Food Hitchee'], ['Food Hitcher'],
+reply_keyboard = [['Feed myself'], ['Help feed others'],
                   ['Help'], ['End']]
 
 markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
@@ -364,9 +364,9 @@ def main():
         entry_points=[CommandHandler('start', start)],
 
         states={
-            MENU: [RegexHandler('^(Food Hitchee)$',
+            MENU: [RegexHandler('^(Feed myself)$',
                                 foodhitchee),
-                   RegexHandler('^(Food Hitcher)$',
+                   RegexHandler('^(Help feed others)$',
                                 foodhitcher),
                    RegexHandler('^(Help)$',
                                 help)
