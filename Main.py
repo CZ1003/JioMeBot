@@ -1,4 +1,4 @@
-import time, logging, emoji
+import time, logging, emoji, pytz
 
 from Controllers.settings import settings
 from Controllers.botmethods import botmethods
@@ -91,8 +91,10 @@ def userlocation(bot, update, user_data):
     text = update.message.text
     if (bots.checkDateFormat(text)):
         date = bots.convertStringToDate(text)
-        future = date.now() + timedelta(minutes = 30)
-        inbetween = date.now() + timedelta(weeks = 1)
+        singapore = pytz.timezone('Asia/Singapore')
+        singaporecurrtime = date.now().astimezone(singapore)
+        future = singaporecurrtime + timedelta(minutes = 30)
+        inbetween = singaporecurrtime + timedelta(weeks = 1)
         if (date >= future and date <= inbetween):
             user_data['time'] = date
             update.message.reply_text('Where would you like the food to be delivered to?\n(Between 4 to 30 characters. E.g. Hall 12, LT13..)')
