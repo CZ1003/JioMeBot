@@ -372,8 +372,7 @@ def main():
             MENU: [RegexHandler('^('+ emoji.emojize(':hamburger: Feed myself!')+')$',
                                 foodhitchee),
                    RegexHandler('^('+ emoji.emojize(':bicyclist: Help feed others!')+')$',
-                                foodhitcher),
-                   RegexHandler('^(Help)$',help)],
+                                foodhitcher)],
             #### Food Hitchee ####
             SUBMENUHITCHEE: [RegexHandler('^Place an order$',
                                           what),
