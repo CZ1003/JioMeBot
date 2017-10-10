@@ -4,9 +4,8 @@
     <bookmark url="file://$PROJECT_DIR$/Controllers/botmethods.py" line="102" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e752b6fb-253d-4c58-ab7f-3b6b0ee32199" name="Default" comment="">
+    <list default="true" id="e752b6fb-253d-4c58-ab7f-3b6b0ee32199" name="Default" comment="Datetime">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Controllers/botmethods.py" afterPath="$PROJECT_DIR$/Controllers/botmethods.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main.py" afterPath="$PROJECT_DIR$/Main.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,8 +20,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controllers/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+            <state relative-caret-position="102">
+              <caret line="6" column="30" lean-forward="false" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -33,8 +32,8 @@
       <file leaf-file-name="dbhelper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controllers/dbhelper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-442">
-              <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+            <state relative-caret-position="-1639">
+              <caret line="37" column="104" lean-forward="false" selection-start-line="37" selection-start-column="104" selection-end-line="37" selection-end-column="104" />
               <folding />
             </state>
           </provider>
@@ -43,8 +42,8 @@
       <file leaf-file-name="botmethods.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controllers/botmethods.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1598">
-              <caret line="94" column="97" lean-forward="false" selection-start-line="94" selection-start-column="97" selection-end-line="94" selection-end-column="97" />
+            <state relative-caret-position="7">
+              <caret line="209" column="28" lean-forward="true" selection-start-line="209" selection-start-column="28" selection-end-line="209" selection-end-column="28" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -55,10 +54,10 @@
       <file leaf-file-name="Main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="359" column="22" lean-forward="true" selection-start-line="359" selection-start-column="22" selection-end-line="359" selection-end-column="22" />
+            <state relative-caret-position="219">
+              <caret line="102" column="27" lean-forward="false" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="27" />
               <folding>
-                <element signature="e#0#20#0" expanded="true" />
+                <element signature="e#0#33#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -68,21 +67,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getpending</find>
-      <find>g</find>
-      <find>pending</find>
-      <find>receive</find>
-      <find>getPendingOrdersByChatID</find>
-      <find>getpendingorders</find>
-      <find>getPendingOrdersByUsername</find>
-      <find>receiver use</find>
-      <find>getchatid</find>
-      <find>getChatIdByOrderId</find>
-      <find>getsenderByOrderId</find>
-      <find>completerequestorder</find>
-      <find>getsender</find>
-      <find>cancelled</find>
-      <find>has been cancelled</find>
       <find>confirmcancel</find>
       <find>/cancel</find>
       <find>send_</find>
@@ -98,6 +82,21 @@
       <find>parseint</find>
       <find>parse</find>
       <find>checkint</find>
+      <find>food hitcher</find>
+      <find>food hitchee</find>
+      <find>food hitch</find>
+      <find>help</find>
+      <find>End</find>
+      <find>dd mmm yyy</find>
+      <find>==</find>
+      <find>update.message.chat.id</find>
+      <find>removeExpiredOrders</find>
+      <find>getChatIdByOrderId</find>
+      <find>removeexpired</find>
+      <find>get_all_orders</find>
+      <find>50</find>
+      <find>pytz</find>
+      <find>date</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -116,8 +115,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="583" />
-    <option name="y" value="82" />
+    <option name="x" value="-60" />
+    <option name="y" value="193" />
     <option name="width" value="1346" />
     <option name="height" value="688" />
   </component>
@@ -213,90 +212,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1507115980858</updated>
-    </task>
-    <task id="LOCAL-00001" summary="Test Push">
-      <created>1507116212523</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1507116212523</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Pushed into master for Heroku">
-      <created>1507116305093</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1507116305093</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Edit Procfile">
-      <created>1507116694167</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1507116694167</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Changed Token">
-      <created>1507117792498</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1507117792498</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Test Message">
-      <created>1507118295915</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1507118295915</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Test Token Again">
-      <created>1507118445222</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1507118445222</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Test Token Again">
-      <created>1507118555793</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1507118555793</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Test Token Again #2">
-      <created>1507118780868</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1507118780868</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Fixed sending to Redox">
-      <created>1507122818083</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1507122818083</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Commented some stuff">
-      <created>1507183917189</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1507183917189</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Added cancellation for both Hitchee and Hitcher&#10;Added tip&#10;Added View placed/pending orders for Hitchee, View confirmed orders for Hitcher&#10;Fixed some bugs&#10;TBD: Reporting users, order expiry, more validations">
-      <created>1507228149013</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1507228149013</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Added cancellation for both Hitchee and Hitcher&#10;Added tip&#10;Added View placed/pending orders for Hitchee, View confirmed orders for Hitcher&#10;Fixed some bugs&#10;TBD: Reporting users, order expiry, more validations">
-      <created>1507228219248</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1507228219248</updated>
     </task>
     <task id="LOCAL-00013" summary="Added input validations for placing orders&#10;Added proper datetime functions. Validations too.&#10;Added orders to be automatically removed once expires.">
       <created>1507488539354</created>
@@ -459,7 +374,189 @@
       <option name="project" value="LOCAL" />
       <updated>1507549487783</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Datetime">
+      <created>1507549875265</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1507549875265</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Datetime">
+      <created>1507614830980</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1507614830981</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Datetime">
+      <created>1507615108334</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1507615108334</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Datetime">
+      <created>1507615502023</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1507615502024</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Datetime">
+      <created>1507616318269</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1507616318269</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Datetime">
+      <created>1507616355310</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1507616355310</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Datetime">
+      <created>1507616848742</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1507616848742</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Datetime">
+      <created>1507617095204</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1507617095205</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Datetime">
+      <created>1507617316086</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1507617316086</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Datetime">
+      <created>1507617631227</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1507617631227</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Datetime">
+      <created>1507617743180</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1507617743180</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Datetime">
+      <created>1507617850898</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1507617850898</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Datetime">
+      <created>1507618097955</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1507618097955</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Datetime">
+      <created>1507618185860</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1507618185860</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Datetime">
+      <created>1507618629459</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1507618629460</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Datetime">
+      <created>1507618748842</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1507618748842</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Datetime">
+      <created>1507619171338</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1507619171338</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Datetime">
+      <created>1507619391912</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1507619391913</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Datetime">
+      <created>1507620903565</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1507620903565</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Datetime">
+      <created>1507621048272</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1507621048272</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Datetime">
+      <created>1507621287852</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1507621287852</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Datetime">
+      <created>1507621613514</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1507621613514</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Datetime">
+      <created>1507621731249</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1507621731249</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Datetime">
+      <created>1507621956358</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1507621956358</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Datetime">
+      <created>1507623563968</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1507623563968</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Datetime">
+      <created>1507623694775</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1507623694775</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -470,12 +567,12 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14037855" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39905363" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39905363" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -510,7 +607,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="32" />
+      <option name="time" value="40" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -530,7 +627,7 @@
         <state relative-caret-position="2992">
           <caret line="176" column="0" lean-forward="false" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
           <folding>
-            <element signature="e#0#20#0" expanded="true" />
+            <element signature="e#0#33#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -610,38 +707,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Controllers/dbhelper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-442">
-          <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+        <state relative-caret-position="-1639">
+          <caret line="37" column="104" lean-forward="false" selection-start-line="37" selection-start-column="104" selection-end-line="37" selection-end-column="104" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controllers/botmethods.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1598">
-          <caret line="94" column="97" lean-forward="false" selection-start-line="94" selection-start-column="97" selection-end-line="94" selection-end-column="97" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Controllers/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+        <state relative-caret-position="102">
+          <caret line="6" column="30" lean-forward="false" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Controllers/botmethods.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7">
+          <caret line="209" column="28" lean-forward="true" selection-start-line="209" selection-start-column="28" selection-end-line="209" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="359" column="22" lean-forward="true" selection-start-line="359" selection-start-column="22" selection-end-line="359" selection-end-column="22" />
+        <state relative-caret-position="219">
+          <caret line="102" column="27" lean-forward="false" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="27" />
           <folding>
-            <element signature="e#0#20#0" expanded="true" />
+            <element signature="e#0#33#0" expanded="true" />
           </folding>
         </state>
       </provider>

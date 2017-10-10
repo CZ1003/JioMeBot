@@ -98,6 +98,9 @@ def userlocation(bot, update, user_data):
         inbetween = singaporecurrtime + timedelta(weeks = 1)
         if (singaporedate >= future and singaporedate <= inbetween):
             user_data['time'] = dateinput
+            print(singaporecurrtime)
+            print(singaporedate)
+            print(inbetween)
             update.message.reply_text('Where would you like the food to be delivered to?\n(Between 4 to 30 characters. E.g. Hall 12, LT13..)')
             return TIP
         else:
