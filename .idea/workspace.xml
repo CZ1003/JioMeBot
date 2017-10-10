@@ -4,11 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/Controllers/botmethods.py" line="105" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e752b6fb-253d-4c58-ab7f-3b6b0ee32199" name="Default" comment="Datetime">
+    <list default="true" id="e752b6fb-253d-4c58-ab7f-3b6b0ee32199" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Controllers/botmethods.py" afterPath="$PROJECT_DIR$/Controllers/botmethods.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Controllers/dbhelper.py" afterPath="$PROJECT_DIR$/Controllers/dbhelper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main.py" afterPath="$PROJECT_DIR$/Main.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,7 +32,7 @@
       <file leaf-file-name="dbhelper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controllers/dbhelper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
+            <state relative-caret-position="129">
               <caret line="91" column="44" lean-forward="false" selection-start-line="91" selection-start-column="8" selection-end-line="91" selection-end-column="44" />
               <folding />
             </state>
@@ -44,8 +42,8 @@
       <file leaf-file-name="botmethods.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controllers/botmethods.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="228" column="36" lean-forward="false" selection-start-line="228" selection-start-column="8" selection-end-line="228" selection-end-column="36" />
+            <state relative-caret-position="197">
+              <caret line="227" column="0" lean-forward="true" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -56,8 +54,8 @@
       <file leaf-file-name="Main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="13">
-              <caret line="92" column="50" lean-forward="true" selection-start-line="92" selection-start-column="50" selection-end-line="92" selection-end-column="50" />
+            <state relative-caret-position="200">
+              <caret line="103" column="85" lean-forward="true" selection-start-line="103" selection-start-column="85" selection-end-line="103" selection-end-column="85" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -69,8 +67,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getallorde</find>
-      <find>get_all_placedorders</find>
       <find>get_all_</find>
       <find>view all ordes</find>
       <find>accept</find>
@@ -97,8 +93,10 @@
       <find>removeExpiredOrders</find>
       <find>confirmorders</find>
       <find>placedorders</find>
-      <find>confirmedorders</find>
       <find>getPendingOrdersByUsername</find>
+      <find>confirmedorders</find>
+      <find>getpending</find>
+      <find>getPendingOrdersByUsernameForRemoval</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -111,8 +109,8 @@
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/Controllers/settings.py" />
         <option value="$PROJECT_DIR$/Controllers/dbhelper.py" />
-        <option value="$PROJECT_DIR$/Controllers/botmethods.py" />
         <option value="$PROJECT_DIR$/Main.py" />
+        <option value="$PROJECT_DIR$/Controllers/botmethods.py" />
       </list>
     </option>
   </component>
@@ -214,13 +212,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1507115980858</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Datetime">
-      <created>1507549875265</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1507549875265</updated>
     </task>
     <task id="LOCAL-00037" summary="Datetime">
       <created>1507614830980</created>
@@ -558,7 +549,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507652035347</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="Datetime">
+      <created>1507652804967</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1507652804967</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -727,14 +725,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Controllers/dbhelper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="91" column="44" lean-forward="false" selection-start-line="91" selection-start-column="8" selection-end-line="91" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Controllers/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -745,10 +735,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Controllers/dbhelper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="91" column="44" lean-forward="false" selection-start-line="91" selection-start-column="8" selection-end-line="91" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Controllers/botmethods.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="228" column="36" lean-forward="false" selection-start-line="228" selection-start-column="8" selection-end-line="228" selection-end-column="36" />
+        <state relative-caret-position="197">
+          <caret line="227" column="0" lean-forward="true" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -757,8 +755,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="92" column="50" lean-forward="true" selection-start-line="92" selection-start-column="50" selection-end-line="92" selection-end-column="50" />
+        <state relative-caret-position="200">
+          <caret line="103" column="85" lean-forward="true" selection-start-line="103" selection-start-column="85" selection-end-line="103" selection-end-column="85" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>

@@ -227,7 +227,7 @@ class botmethods:
                      db.removeExpiredOrders(e)
 
     def removeExpiredOrdersCompleted(self, username):
-            for (a, b, c, d, e, f, g) in db.getPendingOrdersByUsernameForRemoval(username):  ##
+            for (a, b, c, d, e, f, g, h) in db.getPendingOrdersByUsernameForRemoval(username):  ##
                 date = datetime.strptime(e, '%Y-%m-%d %H:%M:%S')
                 singapore = pytz.timezone('Asia/Kuala_Lumpur')
                 singaporedbdate = date.astimezone(singapore) - timedelta(hours = 8)
