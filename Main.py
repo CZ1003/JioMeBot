@@ -369,13 +369,11 @@ def main():
         entry_points=[CommandHandler('start', start)],
 
         states={
-            MENU: [RegexHandler('^(Feed myself!)$',
+            MENU: [RegexHandler('^('+ emoji.emojize(':hamburger: Feed myself!')+')$',
                                 foodhitchee),
                    RegexHandler('^(Help feed others!)$',
                                 foodhitcher),
-                   RegexHandler('^(Help)$',
-                                help)
-                   ],
+                   RegexHandler('^(Help)$',help)],
             #### Food Hitchee ####
             SUBMENUHITCHEE: [RegexHandler('^Place an order$',
                                           what),
