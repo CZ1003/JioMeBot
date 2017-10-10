@@ -223,7 +223,7 @@ class botmethods:
                 if (singaporetimezone >= singaporedbdate):
                      set.send_message("Your order of: ", a)
                      set.send_message(self.getOrderByOrderID(b), a)
-                     set.send_message("has expired! Please place a new order.")
+                     set.send_message("has expired! Please place a new order.", a)
                      db.removeExpiredOrders(e)
 
 
