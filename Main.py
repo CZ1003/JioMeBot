@@ -48,7 +48,7 @@ def start(bot, update):
         update.message.reply_text(
             "Welcome to FoodHitch, a goodwill based delivery system!\n\nYou can choose to either place an order, or fulfill an order in return for a small tip.(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
             reply_markup=markup)
-        bots.removeExpiredOrders() #NOT elegant, might slow database down abit. TBD...
+         #NOT elegant, might slow database down abit. TBD...
 
        # db.checkNumOfOrders(update.message.chat.id) ## To be done..
         return MENU
@@ -227,6 +227,7 @@ def foodhitcher(bot, update):
 
 def vieworders(bot, update):
     allOrders = bots.getAllOrders()
+    bots.removeExpiredOrders()
     if allOrders == "There are currently no orders!":
         update.message.reply_text('There are currently no orders!')
         update.message.reply_text('Thank you for making hungry people happy! \nPlease choose an option:',
