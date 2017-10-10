@@ -13,7 +13,7 @@ bots = botmethods()
 set = settings()
 db = DBHelper()
 
-reply_keyboard = [['Feed myself!'], ['Help feed others!'], ['End']]
+reply_keyboard = [['Feed myself!'], ['Help feed others!']]
 
 markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
 
