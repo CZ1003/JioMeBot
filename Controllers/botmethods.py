@@ -215,7 +215,7 @@ class botmethods:
 
     def removeExpiredOrders(self):
             for (a, b, c, d, e, f) in db.get_all_orders():  ##
-                date = datetime.datetime.strptime(d, '%Y-%m-%d %H:%M:%S')
+                date = datetime.strptime(d, '%Y-%m-%d %H:%M:%S')
                 singapore = pytz.timezone('Asia/Kuala_Lumpur')
                 singaporedbdate = date.astimezone(singapore) - timedelta(hours = 8)
                 singaporetimezone = datetime.now().astimezone(singapore)
