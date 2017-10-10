@@ -1,4 +1,4 @@
-import time, logging
+import time, logging, emoji
 
 from Controllers.settings import settings
 from Controllers.botmethods import botmethods
@@ -13,7 +13,7 @@ bots = botmethods()
 set = settings()
 db = DBHelper()
 
-reply_keyboard = [['Feed myself!'], ['Help feed others!']]
+reply_keyboard = [[emoji.emojize(':hamburger: Feed myself!', use_aliases=True)], [emoji.emojize(':bicyclist: Help feed others!', use_aliases=True)]]
 
 markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
 
