@@ -122,7 +122,7 @@ def tip(bot, update, user_data):
 def finalize(bot, update, user_data):
     text = update.message.text
     if (bots.parseFloat(text)):
-        if (float(text) > 0 and float(text) < 50):
+        if (float(text) >= 1 and float(text) <= 50):
             user_data['tip'] = text
             set.send_message('Food: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}hrs</b>\nDeliver to: <b>{}</b>\nTip: <b>${}</b>'.format(user_data["food"], user_data["location"], bots.convertToReadable(user_data["time"]), user_data["userlocation"], user_data["tip"]), update.message.chat.id)
             update.message.reply_text('Confirm order?', reply_markup=markup3)
