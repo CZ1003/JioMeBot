@@ -1,6 +1,8 @@
 from Controllers.dbhelper import DBHelper
 from dateutil.parser import parse
-import datetime, pytz
+from datetime import datetime, timedelta
+import pytz
+
 db = DBHelper()
 
 class botmethods:
@@ -215,7 +217,7 @@ class botmethods:
             for (a, b, c, d, e, f) in db.get_all_orders():  ##
                 date = datetime.datetime.strptime(d, '%Y-%m-%d %H:%M:%S')
                 singapore = pytz.timezone('Asia/Kuala_Lumpur')
-                singaporedbdate = date.astimezone(singapore)
+                singaporedbdate = date.astimezone(singapore) - timedelta(hours = 8)
                 singaporetimezone = datetime.datetime.now().astimezone(singapore)
                 if (singaporetimezone > singaporedbdate):
                      db.removeExpiredOrders(d)
