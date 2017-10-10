@@ -17,13 +17,13 @@ reply_keyboard = [['Feed myself!'], ['Help feed others!']]
 
 markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
 
-reply_keyboard2 = [['Place an order'], ['View placed orders'], ['End']]
+reply_keyboard2 = [['Place an order'], ['View placed orders'], ['Main Menu']]
 markup2 = ReplyKeyboardMarkup(reply_keyboard2, one_time_keyboard=True)
 
-reply_keyboard3 = [['Yes'], ['No'], ['End']]
+reply_keyboard3 = [['Yes'], ['No'], ['Main Menu']]
 markup3 = ReplyKeyboardMarkup(reply_keyboard3, one_time_keyboard=True)
 
-reply_keyboard4 = [['View All Orders'], ['View/Cancel Confirmed Orders'], ['End']]
+reply_keyboard4 = [['View All Orders'], ['View/Cancel Confirmed Orders'], ['Main Menu']]
 markup4 = ReplyKeyboardMarkup(reply_keyboard4, one_time_keyboard=True)
 
 # reply_keyboard5 = [['Complete'], ['Cancel'], ['End']]
@@ -46,8 +46,7 @@ def start(bot, update):
             "Hello and welcome to FoodHitch!\nIt seems like you do not have a Telegram Username.\n\nIn order to process your orders and ensure that communication between you and the deliverer is smooth, a username is needed.\n\nPlease create a Telegram Username before using me, thank you!\n(You can set your username in Settings.)")
     else:
         update.message.reply_text(
-            "Welcome to FoodHitch, a goodwill based delivery system!\n' \
-                              'You can choose to either place an order, or fulfill an order in return for a small tip.(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
+            "Welcome to FoodHitch, a goodwill based delivery system!\n\nYou can choose to either place an order, or fulfill an order in return for a small tip.(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
             reply_markup=markup)
         bots.removeExpiredOrders() #NOT elegant, might slow database down abit. TBD...
        # db.checkNumOfOrders(update.message.chat.id) ## To be done..
@@ -440,7 +439,7 @@ def main():
         },
 
         fallbacks=[CommandHandler('cancel', cancel, pass_user_data=True), #These commands are to terminate, return or more specifically do something if the other states return "FALSE".
-                   RegexHandler('^End$', cancel, pass_user_data=True),
+                   RegexHandler('^Main Menu$', cancel, pass_user_data=True),
                    CommandHandler('home', start)]
     )
 
