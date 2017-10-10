@@ -280,9 +280,10 @@ def confirmorder(bot, update, user_data):
 def confirmedorders(bot, update):
     pendingorders = bots.getPendingOrdersByUsername(update.message.chat.username)
     if pendingorders is not None:
+        bots.removeExpiredOrdersCompleted(update.message.chat.username)
         update.message.reply_text('Here are your pending orders!')
         set.send_message(bots.getPendingOrdersByUsername(update.message.chat.username), update.message.chat.id)
-        update.message.reply_text('Please enter order ID you would like to cancel or tap on /home to return to home page.')
+        update.message.reply_text('Please enter order ID you would like to cancel or tap on /home to return to home page.\n\nOrders which are past their expiry date will be automatically deleted so you don''t have to worry even after completion!')
         return CANCEL
     else:
         update.message.reply_text('You have not accepted any orders yet!')

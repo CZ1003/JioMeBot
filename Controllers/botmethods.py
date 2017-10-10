@@ -226,4 +226,16 @@ class botmethods:
                      set.send_message("has expired! Please place a new order.", a)
                      db.removeExpiredOrders(e)
 
+    def removeExpiredOrdersCompleted(self, username):
+            for (a, b, c, d, e, f, g) in db.getPendingOrdersByUsernameForRemoval(username):  ##
+                date = datetime.strptime(e, '%Y-%m-%d %H:%M:%S')
+                singapore = pytz.timezone('Asia/Kuala_Lumpur')
+                singaporedbdate = date.astimezone(singapore) - timedelta(hours = 8)
+                singaporetimezone = datetime.now().astimezone(singapore)
+                if (singaporetimezone >= singaporedbdate):
+                    set.send_message("Your order of: ", a)
+                    set.send_message(self.getOrderByOrderID(b), a)
+                    set.send_message("\nhas expired. \nWe assume that you have completed them. Thank you for making hungry people happy!", a)
+                    db.removeExpiredOrders(e)
+
 

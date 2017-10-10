@@ -89,6 +89,13 @@ class DBHelper:
         self.conn.commit()
         return result
 
+    def getPendingOrdersByUsernameForRemoval(self, username):
+        stmt = "SELECT chat_id, order_id, food, location, time,user_location, tip, receiver_username  FROM orders where sender_username = (?) AND status = 1"
+        args = (username,)
+        result = (x for x in self.conn.execute(stmt, args))
+        self.conn.commit()
+        return result
+
     def bindSenderToOrder(self, sender_username, sender_chatid, order_id):
         stmt = "UPDATE orders SET sender_username = (?), sender_chatid = (?) where order_id = (?)"
         args = (sender_username, sender_chatid, order_id)

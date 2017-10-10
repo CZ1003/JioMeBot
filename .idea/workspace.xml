@@ -4,9 +4,11 @@
     <bookmark url="file://$PROJECT_DIR$/Controllers/botmethods.py" line="105" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e752b6fb-253d-4c58-ab7f-3b6b0ee32199" name="Default" comment="">
+    <list default="true" id="e752b6fb-253d-4c58-ab7f-3b6b0ee32199" name="Default" comment="Datetime">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Controllers/botmethods.py" afterPath="$PROJECT_DIR$/Controllers/botmethods.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Controllers/dbhelper.py" afterPath="$PROJECT_DIR$/Controllers/dbhelper.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main.py" afterPath="$PROJECT_DIR$/Main.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,18 +34,18 @@
       <file leaf-file-name="dbhelper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controllers/dbhelper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="36" column="22" lean-forward="false" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="22" />
+            <state relative-caret-position="199">
+              <caret line="91" column="44" lean-forward="false" selection-start-line="91" selection-start-column="8" selection-end-line="91" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="botmethods.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="botmethods.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controllers/botmethods.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="132" column="22" lean-forward="true" selection-start-line="132" selection-start-column="22" selection-end-line="132" selection-end-column="22" />
+            <state relative-caret-position="408">
+              <caret line="228" column="36" lean-forward="false" selection-start-line="228" selection-start-column="8" selection-end-line="228" selection-end-column="36" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -51,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="242" column="30" lean-forward="true" selection-start-line="242" selection-start-column="30" selection-end-line="242" selection-end-column="30" />
+            <state relative-caret-position="13">
+              <caret line="92" column="50" lean-forward="true" selection-start-line="92" selection-start-column="50" selection-end-line="92" selection-end-column="50" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -67,36 +69,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>removeExpiredOrders</find>
-      <find>removeexpired</find>
-      <find>50</find>
-      <find>pytz</find>
-      <find>date</find>
-      <find>checkdateform</find>
-      <find>datetime.datetim</find>
-      <find>datetime.datim</find>
-      <find>minutes</find>
-      <find>viewor</find>
-      <find>timedelta</find>
-      <find>minutes = 30</find>
-      <find>own order</find>
-      <find>getchatidby</find>
-      <find>getChatIdByOrderId</find>
-      <find>getusername</find>
-      <find>!=</find>
-      <find>getallpla</find>
-      <find>getAllPlacedOrdersByChatID</find>
-      <find>getallorders</find>
       <find>getallorde</find>
-      <find>getall</find>
       <find>get_all_placedorders</find>
       <find>get_all_</find>
       <find>view all ordes</find>
-      <find>vieworders</find>
-      <find>getAllPlacedOrders</find>
       <find>accept</find>
       <find>checkorder</find>
+      <find>getall</find>
+      <find>getAllPlacedOrders</find>
+      <find>remov</find>
+      <find>removeplac</find>
+      <find>invalid</find>
+      <find>checkOrders</find>
+      <find>view_al</find>
+      <find>vieworders</find>
+      <find>placedo</find>
+      <find>your order of</find>
+      <find>getUnconfirmedOrdersByChatID</find>
+      <find>view placed orders</find>
+      <find>please place</find>
+      <find>placed</find>
+      <find>cancel confirmed orders</find>
+      <find>pendingordersbyusername</find>
+      <find>getpendingorders</find>
+      <find>getpendingordersbyusername</find>
       <find>get_all_orders</find>
+      <find>removeExpiredOrders</find>
+      <find>confirmorders</find>
+      <find>placedorders</find>
+      <find>confirmedorders</find>
+      <find>getPendingOrdersByUsername</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -107,10 +109,10 @@
       <list>
         <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/requirements.txt" />
-        <option value="$PROJECT_DIR$/Controllers/dbhelper.py" />
-        <option value="$PROJECT_DIR$/Main.py" />
         <option value="$PROJECT_DIR$/Controllers/settings.py" />
+        <option value="$PROJECT_DIR$/Controllers/dbhelper.py" />
         <option value="$PROJECT_DIR$/Controllers/botmethods.py" />
+        <option value="$PROJECT_DIR$/Main.py" />
       </list>
     </option>
   </component>
@@ -212,27 +214,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1507115980858</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Datetime">
-      <created>1507549066997</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1507549066997</updated>
-    </task>
-    <task id="LOCAL-00034" summary="Datetime">
-      <created>1507549220329</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1507549220329</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Datetime">
-      <created>1507549487783</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1507549487783</updated>
     </task>
     <task id="LOCAL-00036" summary="Datetime">
       <created>1507549875265</created>
@@ -556,7 +537,28 @@
       <option name="project" value="LOCAL" />
       <updated>1507647650442</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Datetime">
+      <created>1507648509298</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1507648509298</updated>
+    </task>
+    <task id="LOCAL-00083" summary="Datetime">
+      <created>1507648886205</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1507648886206</updated>
+    </task>
+    <task id="LOCAL-00084" summary="Datetime">
+      <created>1507652035347</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1507652035347</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -725,6 +727,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Controllers/dbhelper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="91" column="44" lean-forward="false" selection-start-line="91" selection-start-column="8" selection-end-line="91" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Controllers/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -735,30 +745,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Controllers/dbhelper.py">
+    <entry file="file://$PROJECT_DIR$/Controllers/botmethods.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="36" column="22" lean-forward="false" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="22" />
-          <folding />
+        <state relative-caret-position="408">
+          <caret line="228" column="36" lean-forward="false" selection-start-line="228" selection-start-column="8" selection-end-line="228" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="242" column="30" lean-forward="true" selection-start-line="242" selection-start-column="30" selection-end-line="242" selection-end-column="30" />
+        <state relative-caret-position="13">
+          <caret line="92" column="50" lean-forward="true" selection-start-line="92" selection-start-column="50" selection-end-line="92" selection-end-column="50" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controllers/botmethods.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="132" column="22" lean-forward="true" selection-start-line="132" selection-start-column="22" selection-end-line="132" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
