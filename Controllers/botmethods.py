@@ -1,15 +1,16 @@
 from Controllers.dbhelper import DBHelper
 from dateutil.parser import parse
 from datetime import datetime, timedelta
+from Controllers.settings import settings
 import pytz
 
 db = DBHelper()
-
+set = settings()
 class botmethods:
     def __init__(self):
         pass
 
-    def getAllOrders(self): #Function to get all orders
+    def getAllPlacedOrders(self, chatid): #Function to get all orders
         message = None
         list = []
         for (a, b, c, d, e, f) in db.get_all_orders():  ##
@@ -214,11 +215,15 @@ class botmethods:
             return False
 
     def removeExpiredOrders(self):
-            for (a, b, c, d, e, f) in db.get_all_orders():  ##
-                date = datetime.strptime(d, '%Y-%m-%d %H:%M:%S')
+            for (a, b, c, d, e, f, g) in db.get_all_orders():  ##
+                date = datetime.strptime(e, '%Y-%m-%d %H:%M:%S')
                 singapore = pytz.timezone('Asia/Kuala_Lumpur')
                 singaporedbdate = date.astimezone(singapore) - timedelta(hours = 8)
                 singaporetimezone = datetime.now().astimezone(singapore)
                 if (singaporetimezone >= singaporedbdate):
-                     db.removeExpiredOrders(d)
+                     set.send_message("Your order of: ", a)
+                     set.send_message(self.getOrderByOrderID(b), a)
+                     set.send_message("has expired! Please place a new order.")
+                     db.removeExpiredOrders(e)
+
 

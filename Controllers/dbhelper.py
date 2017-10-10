@@ -35,8 +35,15 @@ class DBHelper:
         return result
 
     def get_all_orders(self):
-        stmt = "SELECT order_id,  food, location,  time, user_location, tip FROM orders WHERE status = 0"
+        stmt = "SELECT chat_id, order_id,  food, location,  time, user_location, tip FROM orders WHERE status = 0"
         result = (x for x in self.conn.execute(stmt))
+        self.conn.commit()
+        return result
+
+    def get_all_placedorderswithoutownorder(self, chatid):
+        stmt = "SELECT order_id,  food, location,  time, user_location, tip FROM orders WHERE NOT chat_id = (?) AND status = 0"
+        args = (chatid,)
+        result = (x for x in self.conn.execute(stmt, args))
         self.conn.commit()
         return result
 

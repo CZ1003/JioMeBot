@@ -4,7 +4,7 @@ from Controllers.settings import settings
 from Controllers.botmethods import botmethods
 from Controllers.dbhelper import DBHelper
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, RegexHandler,
-                          ConversationHandler, Job)
+                          ConversationHandler)
 from telegram.__main__ import main as tmain
 from telegram import ReplyKeyboardMarkup
 from datetime import time, timedelta, datetime
@@ -227,7 +227,7 @@ def foodhitcher(bot, update):
     return SUBMENUHITCHER
 
 def vieworders(bot, update):
-    allOrders = bots.getAllOrders()
+    allOrders = bots.getAllPlacedOrders(update.message.chat.id)
     bots.removeExpiredOrders()
     if allOrders == "There are currently no orders!":
         update.message.reply_text('There are currently no orders!')
@@ -243,26 +243,20 @@ def acceptorder(bot, update, user_data):
     text = update.message.text
     user_data['choice'] = text
     if bots.checkOrders(user_data['choice']) == 'SUCCESSFUL':
-        if update.message.chat.id != bots.getChatIdByOrderId(user_data['choice']):
             bots.checkOrders(user_data['choice'])
             update.message.reply_text('Please confirm following order to be accepted:', reply_markup=markup3)
             set.send_message(bots.getOrderByOrderID(user_data['choice']), update.message.chat.id)
             return DELIVERCONFIRM
-        else:
-            update.message.reply_text('You cannot accept your own order! Please try again.')
-            update.message.reply_text('Here''s a list of existing orders!')
-            set.send_message(bots.getAllOrders(), update.message.chat.id)
-            return ACCEPT
     else:
         update.message.reply_text('Invalid Order ID! Please try again.')
         update.message.reply_text('Here''s a list of existing orders!')
-        set.send_message(bots.getAllOrders(), update.message.chat.id)
+        set.send_message(bots.getAllPlacedOrders(update.message.chat.id), update.message.chat.id)
         return ACCEPT
 
 def repeatdelivery(bot, update, user_data):
     user_data.clear()
     update.message.reply_text('Here''s a list of existing orders!')
-    set.send_message(bots.getAllOrders(update.message.chat.id), update.message.chat.id)
+    set.send_message(bots.getAllPlacedOrders(update.message.chat.id), update.message.chat.id)
     return ACCEPT
 
 def confirmorder(bot, update, user_data):
