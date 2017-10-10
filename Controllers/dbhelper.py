@@ -117,7 +117,7 @@ class DBHelper:
         return result
 
     def removeExpiredOrders(self, datetime):
-        stmt = "DELETE FROM orders WHERE time = (?)"
+        stmt = "DELETE FROM orders WHERE "
         args = (datetime,)
         self.conn.execute(stmt, args)
         self.conn.commit()
