@@ -7,7 +7,7 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, Rege
                           ConversationHandler, Job)
 from telegram.__main__ import main as tmain
 from telegram import ReplyKeyboardMarkup
-from datetime import time, timedelta
+from datetime import time, timedelta, datetime
 
 bots = botmethods()
 set = settings()
@@ -90,14 +90,14 @@ def time(bot, update, user_data):
 def userlocation(bot, update, user_data):
     text = update.message.text
     if (bots.checkDateFormat(text)):
-        date = bots.convertStringToDate(text)
-        singapore = pytz.timezone('Asia/Kuala_Lumpur')
-        singaporedate = date.astimezone(singapore)
-        singaporecurrtime = date.now().astimezone(singapore)
+        dateinput = bots.convertStringToDate(text)
+        singapore = pytz.timezone('Asia/Singapore')
+       # singaporedate = date.astimezone(singapore)
+        singaporecurrtime = datetime.now().astimezone(singapore)
         future = singaporecurrtime + timedelta(minutes = 30)
         inbetween = singaporecurrtime + timedelta(weeks = 1)
-        if (singaporedate >= future and singaporedate <= inbetween):
-            user_data['time'] = date
+        if (dateinput >= future and dateinput <= inbetween):
+            user_data['time'] = dateinput
             update.message.reply_text('Where would you like the food to be delivered to?\n(Between 4 to 30 characters. E.g. Hall 12, LT13..)')
             return TIP
         else:
