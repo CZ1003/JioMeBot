@@ -218,7 +218,7 @@ class botmethods:
                 date = datetime.datetime.strptime(d, '%Y-%m-%d %H:%M:%S')
                 singapore = pytz.timezone('Asia/Kuala_Lumpur')
                 singaporedbdate = date.astimezone(singapore) - timedelta(hours = 8)
-                singaporetimezone = datetime.datetime.now().astimezone(singapore)
+                singaporetimezone = datetime.now().astimezone(singapore)
                 if (singaporetimezone > singaporedbdate):
                      db.removeExpiredOrders(d)
 
