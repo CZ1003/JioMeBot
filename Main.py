@@ -94,17 +94,17 @@ def userlocation(bot, update, user_data):
         singapore = pytz.timezone('Asia/Singapore')
         #UTC0 = pytz.timezone('Europe/Copenhagen')
 
-        singaporedate = dateinput.astimezone(singapore)
+        singaporedate = dateinput.astimezone(singapore) - timedelta(hours = 8) # Delivery time
 
         singaporecurrtime = datetime.now().astimezone(singapore)
         future = singaporecurrtime + timedelta(minutes = 30)
         inbetween = singaporecurrtime + timedelta(days = 7)
         if (singaporedate >= future and singaporedate <= inbetween):
             user_data['time'] = dateinput
-            print(dateinput)
-            print(singaporecurrtime)
-            print(singaporedate)
-            print(inbetween)
+            print(dateinput) #time of input
+            print(singaporecurrtime) #delivery time + 8 hours
+            print(singaporedate) #delivery time
+            print(inbetween) #time of input + 1 week
             update.message.reply_text('Where would you like the food to be delivered to?\n(Between 4 to 30 characters. E.g. Hall 12, LT13..)')
             return TIP
         else:
