@@ -13,7 +13,7 @@ bots = botmethods()
 set = settings()
 db = DBHelper()
 
-reply_keyboard = [[emoji.emojize(':hamburger: Feed myself!', use_aliases=True), emoji.emojize(':bicyclist: Help feed others!', use_aliases=True)]]
+reply_keyboard = [[emoji.emojize(':hamburger: Feed myself!', use_aliases=True)], [emoji.emojize(':bicyclist: Help feed others!', use_aliases=True)]]
 
 markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
 
