@@ -418,9 +418,9 @@ def main():
             #### Food Hitchee ####
             SUBMENUHITCHEE: [RegexHandler('^Place an order$',
                                           what),
-                             RegexHandler('^View accepted orders$',
+                             RegexHandler('^View placed orders$',
                                           placedorders),
-                             RegexHandler('^View pending orders$',
+                             RegexHandler('^View accepted orders$',
                                           pendingOrders)
                              ],
             WHERE: [MessageHandler(Filters.text,
