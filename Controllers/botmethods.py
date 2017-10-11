@@ -105,7 +105,7 @@ class botmethods:
         list = []
         for (a, b, c, d, e, f, g) in db.get_all_pendingorders_by_chat_id(chatId):  ##
             list.append(
-                'ID: <b>{}</b>\nFood: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}</b>hrs\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\nSender username: @{}\n----------------------------------------'.format(
+                'ID: <b>{}</b>\nFood: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}</b>hrs\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\nSender''s username: @{}\n----------------------------------------'.format(
                     a, b, c, self.convertStringToDateFromDB(d), e, f, g))
             message = "\n".join(list)
         return message

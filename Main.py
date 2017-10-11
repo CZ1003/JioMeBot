@@ -234,7 +234,7 @@ def pendingOrders(bot, update):
         placedorders = bots.getPendingOrdersByChatID(update.message.chat.id)
         if placedorders is not None:
             update.message.reply_text('Here''s a list of your accepted orders!')
-            set.send_message(placedorders + "\nType /menuto return to main menu.", update.message.chat.id)
+            set.send_message(placedorders + "\nType /menu to return to main menu.", update.message.chat.id)
         else:
             update.message.reply_text('You have no accepted orders! Please place an order first.')
             update.message.reply_text('Seems like you\'re hungry! \nPlease choose an option:', reply_markup=markup2)
