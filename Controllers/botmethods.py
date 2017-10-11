@@ -31,9 +31,9 @@ class botmethods:
     def getPendingOrdersByChatID(self, chat):  # Function to get order by ID
         message = None
         list = []
-        for (a, b, c, d, e, f) in db.get_order(chat):  ##
+        for (a, b, c, d, e, f, g) in db.get_order(chat):  ##
             list.append(
-                'ID: <b>{}</b>\nFood: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}hrs</b>\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\n----------------------------------------'.format(
+                'ID: <b>{}</b>\nFood: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}hrs</b>\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\nSender''s username: @{}----------------------------------------'.format(
                     a, b, c, self.convertStringToDateFromDB(d), e, f))
             message = "\n".join(list)
         return message
@@ -103,7 +103,7 @@ class botmethods:
     def getPendingOrdersByChatID(self, chatId):  # Function to get order by ID
         message = None
         list = []
-        for (a, b, c, d, e,f, g) in db.get_all_pendingorders_by_chat_id(chatId):  ##
+        for (a, b, c, d, e, f, g) in db.get_all_pendingorders_by_chat_id(chatId):  ##
             list.append(
                 'ID: <b>{}</b>\nFood: <b>{}</b>\nLocation: <b>{}</b>\nDate and Time: <b>{}</b>hrs\nDeliver to: <b>{}</b>\nTip: <b>${}</b>\nSender username: @{}\n----------------------------------------'.format(
                     a, b, c, self.convertStringToDateFromDB(d), e, f, g))
@@ -214,29 +214,20 @@ class botmethods:
         except ValueError:
             return False
 
-    def removeExpiredOrders(self):
-            for (a, b, c, d, e, f, g) in db.get_all_orders():  ##
+    def removeExpiredOrders(self): #Method for order expiry
+            for (a, b, c, d, e, f, g, h, i) in db.get_all_orders_for_expiry():  ##
                 date = datetime.strptime(e, '%Y-%m-%d %H:%M:%S')
                 singapore = pytz.timezone('Asia/Kuala_Lumpur')
                 singaporedbdate = date.astimezone(singapore) - timedelta(hours = 8)
+              # singaporedate = dateinput.astimezone(singapore)
                 singaporetimezone = datetime.now().astimezone(singapore)
                 if (singaporetimezone >= singaporedbdate):
-                     set.send_message("Your order of: ", a)
-                     set.send_message(self.getOrderByOrderID(b), a)
-                     set.send_message("has expired! Please place a new order.", a)
+                    if (g is 0):
+                     set.send_message("Your order of:\n" + self.getOrderByOrderID(b) + "\nhas expired! \nThank you for using our bot. We hope you had a good experience with Hitch A Bite! See you again!", a)
                      db.removeExpiredOrders(e)
-
-
-    def removeExpiredOrdersCompleted(self, username):
-            for (a, b, c, d, e, f, g, h) in db.getPendingOrdersByUsernameForRemoval(username):  ##
-                date = datetime.strptime(e, '%Y-%m-%d %H:%M:%S')
-                singapore = pytz.timezone('Asia/Kuala_Lumpur')
-                singaporedbdate = date.astimezone(singapore) - timedelta(hours = 8)
-                singaporetimezone = datetime.now().astimezone(singapore)
-                if (singaporetimezone >= singaporedbdate):
-                    set.send_message("Your order of: ", a)
-                    set.send_message(self.getOrderByOrderID(b), a)
-                    set.send_message("\nhas expired. \nWe assume that you have completed them. Thank you for making hungry people happy!", a)
-                    db.removeExpiredOrders(e)
+                    elif (g is 1):
+                        set.send_message("Your completed order of:\n" + self.getOrderByOrderID(b) + "\nhas expired! \nThank you for using our bot. We hope you had a good experience with Hitch A Bite! See you again!",i)
+                        set.send_message("Your placed order of:\n" + self.getOrderByOrderID(b) + "\nhas expired. \nThank you for using our bot. We hope you had a good experience with Hitch A Bite! See you again!",a)
+                        db.removeExpiredOrders(e)
 
 

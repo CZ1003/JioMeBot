@@ -3,8 +3,8 @@ import json
 import requests
 
 
-#TOKEN = "387099409:AAFmM5sismztGNYvfUo388Bn9QeEhUUcce8" # Dev environment
-TOKEN = "422679288:AAFmt0jTQIUs-9aZkTMCJ2AhDHWDaToYk3Y"
+TOKEN = "456494742:AAFs6Rve9AY5pULX3HXEIjhuVkRynUC7fL0" # Dev environment
+#TOKEN = "422679288:AAFmt0jTQIUs-9aZkTMCJ2AhDHWDaToYk3Y"
 URL = "https://api.telegram.org/bot{}/".format(TOKEN)
 
 class settings:

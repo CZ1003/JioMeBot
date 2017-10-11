@@ -40,6 +40,12 @@ class DBHelper:
         self.conn.commit()
         return result
 
+    def get_all_orders_for_expiry(self):
+        stmt = "SELECT chat_id, order_id,  food, location, time, user_location, status, tip, sender_chatid FROM orders WHERE status = 0 OR status = 1 "
+        result = (x for x in self.conn.execute(stmt))
+        self.conn.commit()
+        return result
+
     def get_all_placedorderswithoutownorder(self, chatid):
         stmt = "SELECT order_id,  food, location,  time, user_location, tip FROM orders WHERE NOT chat_id = (?) AND status = 0"
         args = (chatid,)
