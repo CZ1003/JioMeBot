@@ -174,7 +174,7 @@ def addorder(bot, update, user_data):
         db.add_order(userid, user_data["location"], user_data["food"], user_data["userlocation"], user_data["time"],
                      username, user_data["tip"])
         set.send_message(
-            'Your order of <b>{}</b> from <b>{}</b> has been entered into the database!\nGood luck in getting a Food Hitch!'.format(
+            'Your order of <b>{}</b> from <b>{}</b> has been entered into the database!\n\nYou can choose to cancel your placed orders but once it is accepted, you cannot cancel it.\nGood luck in getting a Food Hitch!'.format(
                 user_data["food"], user_data["location"]), userid)
         user_data.clear()
         update.message.reply_text(
@@ -418,7 +418,7 @@ def main():
             #### Food Hitchee ####
             SUBMENUHITCHEE: [RegexHandler('^Place an order$',
                                           what),
-                             RegexHandler('^View placed orders$',
+                             RegexHandler('^View accepted orders$',
                                           placedorders),
                              RegexHandler('^View pending orders$',
                                           pendingOrders)
