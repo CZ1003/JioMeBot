@@ -17,7 +17,7 @@ reply_keyboard = [[emoji.emojize(':hamburger: Feed myself!', use_aliases=True)],
 
 markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
 
-reply_keyboard2 = [['Place an order'], ['View placed orders'], ['View pending orders'], ['Main Menu']]
+reply_keyboard2 = [['Place an order'], ['View placed orders'], ['View accepted orders'], ['Main Menu']]
 markup2 = ReplyKeyboardMarkup(reply_keyboard2, one_time_keyboard=True)
 
 reply_keyboard3 = [['Yes'], ['No'], ['Main Menu']]
@@ -40,7 +40,7 @@ logger = logging.getLogger(__name__)
 def start(bot, update):
     if  update.message.chat.username is None:
         update.message.reply_text(
-            "Hello and welcome to Hitch A Bite!\nIt seems like you do not have a Telegram Username.\n\nIn order to process your orders and ensure that communication between you and the deliverer is smooth, a username is needed.\n\nPlease create a Telegram Username before using me, thank you!\n(You can set your username in Settings.)")
+            "Hello and welcome to Hitch A Bite, " + update.message.chat.first_name + "!\nIt seems like you do not have a Telegram Username.\n\nIn order to process your orders and ensure that communication between you and the deliverer is smooth, a username is needed.\n\nPlease create a Telegram Username before using me, thank you!\n(You can set your username in Settings.)")
     else:
         removeExpiredOrders() #triggers this function every 1 minute to check for expiry
         update.message.reply_text("Welcome to Hitch A Bite, " + update.message.chat.first_name + "! We are a goodwill based delivery system!\n\nYou can choose to either place an order, or fulfill an order in return for a small tip.(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
@@ -185,10 +185,10 @@ def confirmRemovePlacedOrder(bot, update, user_data):
 def pendingOrders(bot, update):
         placedorders = bots.getPendingOrdersByChatID(update.message.chat.id)
         if placedorders is not None:
-            update.message.reply_text('Here''s a list of your pending orders!')
-            set.send_message(placedorders + "\nType /home to return to main menu.", update.message.chat.id)
+            update.message.reply_text('Here''s a list of your accepted orders!')
+            set.send_message(placedorders + "\nType /menuto return to main menu.", update.message.chat.id)
         else:
-            update.message.reply_text('You have no pending orders! Please place an order first.')
+            update.message.reply_text('You have no accepted orders! Please place an order first.')
             update.message.reply_text('Seems like you\'re hungry! \nPlease choose an option:', reply_markup=markup2)
             return SUBMENUHITCHEE
 
@@ -253,7 +253,7 @@ def confirmedorders(bot, update):
     if pendingorders is not None:
         update.message.reply_text('Here are your pending orders!')
         set.send_message(bots.getPendingOrdersByUsername(update.message.chat.username), update.message.chat.id)
-        update.message.reply_text('Please enter order ID you would like to cancel or tap on /home to return to home page.\n\nOrders which are past their expiry date will be automatically deleted so you don''t have to worry even after completion!')
+        update.message.reply_text('Please enter order ID you would like to cancel or tap on /menu to return to main menu.\n\nOrders which are past their expiry date will be automatically deleted so you don''t have to worry even after completion!')
         return CANCEL
     else:
         update.message.reply_text('You have not accepted any orders yet!')
@@ -272,7 +272,7 @@ def cancelorders(bot, update, user_data):
         update.message.reply_text('Invalid Order ID! Please try again.')
         update.message.reply_text('Here are your pending orders!')
         set.send_message(bots.getPendingOrdersByChatID(update.message.chat.id), update.message.chat.id)
-        update.message.reply_text('Please enter order ID that you would like to cancel or tap on /home to return to home page.')
+        update.message.reply_text('Please enter order ID that you would like to cancel or tap on //menu to return to main menu.')
         return CANCEL
 
 def confirmcancel(bot, update, user_data):
@@ -287,7 +287,7 @@ def confirmcancel(bot, update, user_data):
     return MENU
 
 def returncancel(bot, update):
-    update.message.reply_text('Please enter order ID you would like to cancel or tap on /home to return to home page.')
+    update.message.reply_text('Please enter order ID you would like to cancel or tap on /menu to return to main menu.')
     return CANCEL
 
 # def hitcheeconfirm(bot, update, user_data):
@@ -382,7 +382,7 @@ def main():
 
         fallbacks=[CommandHandler('cancel', cancel, pass_user_data=True), #These commands are to terminate, return or more specifically do something if the other states return "FALSE".
                    RegexHandler('^Main Menu$', start),
-                   CommandHandler('home', start)]
+                   CommandHandler('menu', start)]
     )
 
     dp.add_handler(conv_handler)
