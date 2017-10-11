@@ -177,8 +177,7 @@ def addorder(bot, update, user_data):
             'Your order of <b>{}</b> from <b>{}</b> has been entered into the database!\n\nYou can choose to cancel your placed orders but once it is accepted, you cannot cancel it.\nGood luck in getting a Food Hitch!'.format(
                 user_data["food"], user_data["location"]), userid)
         user_data.clear()
-        update.message.reply_text(
-            "Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
+        update.message.reply_text("Welcome to Hitch A Bite, " + update.message.chat.first_name + "! We are a goodwill based delivery system!\n\nYou can choose to either place an order, or fulfill an order in return for a small tip.(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
             reply_markup=markup)
         return MENU
 
@@ -217,8 +216,8 @@ def confirmRemovePlacedOrder(bot, update, user_data):
             update.message.reply_text('Order removed from list.')
             user_data.clear()
             update.message.reply_text(
-            "Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
-            reply_markup=markup)
+                "Welcome to Hitch A Bite, " + update.message.chat.first_name + "! We are a goodwill based delivery system!\n\nYou can choose to either place an order, or fulfill an order in return for a small tip.(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
+                reply_markup=markup)
             return MENU
         else:
             update.message.reply_text('Invalid Order ID! Please try again.')
@@ -310,8 +309,7 @@ def confirmorder(bot, update, user_data):
                          bots.getChatIdByOrderId(user_data['choice']))
 
         user_data.clear()
-        update.message.reply_text(
-            "Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
+        update.message.reply_text("Welcome to Hitch A Bite, " + update.message.chat.first_name + "! We are a goodwill based delivery system!\n\nYou can choose to either place an order, or fulfill an order in return for a small tip.(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
             reply_markup=markup)
         return MENU
 
@@ -361,8 +359,7 @@ def confirmcancel(bot, update, user_data):
         update.message.reply_text('Order cancelled successfully!')
         set.send_message('Your order of: \n' + bots.getOrderByOrderID(user_data['order']) + '\nhas been cancelled. It has been placed back on the list until expiry. Please try again!', chatid)
         user_data.clear()
-        update.message.reply_text(
-            "Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
+        update.message.reply_text("Welcome to Hitch A Bite, " + update.message.chat.first_name + "! We are a goodwill based delivery system!\n\nYou can choose to either place an order, or fulfill an order in return for a small tip.(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?",
             reply_markup=markup)
         return MENU
 
@@ -385,15 +382,6 @@ def cancel(bot, update, user_data):
 
 def error(bot, update, error):
     logger.warn('Update "%s" caused error "%s"' % (update, error))
-
-
-def help(bot, update):
-    update.message.reply_text('Hi! Welcome to FoodHitch, a goodwill based delivery system!\n' \
-                              'You can choose to either place an order, or fulfill an order in return for a small tip.')
-    update.message.reply_text(
-        'Hello and welcome to FoodHitch!\n(At any point of time, type /cancel to terminate my service)\n\nNow.. What would you like to do?',
-        reply_markup=markup)
-    return MENU
 
 def removeExpiredOrders():
     timer = threading.Timer(60, removeExpiredOrders)
