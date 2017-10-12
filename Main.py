@@ -8,11 +8,13 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, Rege
 from telegram.__main__ import main as tmain
 from telegram import ReplyKeyboardMarkup
 from datetime import time, timedelta, datetime
+#Presentation layer
 
 bots = botmethods()
 set = settings()
 db = DBHelper()
 
+#Initiation of keyboards
 reply_keyboard = [[emoji.emojize(':hamburger: Feed myself!', use_aliases=True)], [emoji.emojize(':bicyclist: Help feed others!', use_aliases=True)]]
 
 markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
@@ -26,13 +28,14 @@ markup3 = ReplyKeyboardMarkup(reply_keyboard3, one_time_keyboard=True)
 reply_keyboard4 = [['View All Orders'], ['View/Cancel Confirmed Orders'], ['Main Menu']]
 markup4 = ReplyKeyboardMarkup(reply_keyboard4, one_time_keyboard=True)
 
+#Variables for menu
 MENU, SUBMENUHITCHEE, WHAT, WHERE, TIME, USERLOCATION, TIP, FINALIZE, \
 CONFIRM, SUBMENUHITCHER, ACCEPT, DELIVERCONFIRM, CANCEL, CONFIRMCANCEL, \
 CONFIRMREMOVE, CANCELHITCHEE, COMPLETEORCANCEL, COMPLETE, HITCHEECONFIRM  = range(19)
 
+#Logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
-
 logger = logging.getLogger(__name__)
 
 
@@ -371,8 +374,6 @@ def returncancel(bot, update):
         update.message.reply_text('Please enter order ID you would like to cancel or tap on /menu to return to main menu.')
         return CANCEL
 
-# def hitcheeconfirm(bot, update, user_data):
-
 
 ## Misc ###
 def cancel(bot, update, user_data):
@@ -383,9 +384,10 @@ def cancel(bot, update, user_data):
 def error(bot, update, error):
     logger.warn('Update "%s" caused error "%s"' % (update, error))
 
+
 def removeExpiredOrders():
     timer = threading.Timer(60, removeExpiredOrders)
-    if (timer.is_alive() is False):
+    if (timer.is_alive() is False): #So it doesnt run multiple times. Only run once.
         timer.start()
         bots.removeExpiredOrders()
 

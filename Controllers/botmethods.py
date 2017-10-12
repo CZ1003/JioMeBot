@@ -10,6 +10,8 @@ class botmethods:
     def __init__(self):
         pass
 
+## Bot methods (The Controller or business logic tier)
+
     def getAllPlacedOrders(self, chatid): #Function to get all orders
         message = None
         list = []
@@ -20,7 +22,7 @@ class botmethods:
             message = "There are currently no orders!"
         return message
 
-    def getOrderByChatID(self, chat):  # Function to get order by ID
+    def getOrderByChatID(self, chat):
         message = None
         list = []
         for (a, b, c, d, e, f) in db.get_order(chat):  ##
@@ -28,7 +30,7 @@ class botmethods:
             message = "\n".join(list)
         return message
 
-    def getPendingOrdersByChatID(self, chat):  # Function to get order by ID
+    def getPendingOrdersByChatID(self, chat):
         message = None
         list = []
         for (a, b, c, d, e, f, g) in db.get_order(chat):  ##
@@ -38,7 +40,7 @@ class botmethods:
             message = "\n".join(list)
         return message
 
-    def getOrderByOrderID(self, orderId):  # Function to get order by ID
+    def getOrderByOrderID(self, orderId):
         message = None
         list = []
         for (a, b, c, d, e, f) in db.getOrderByOrderID(orderId):  ##
@@ -48,7 +50,7 @@ class botmethods:
             message = "\n".join(list)
         return message
 
-    def getChatIdByOrderId(self, orderId):  # Function to get order by ID
+    def getChatIdByOrderId(self, orderId):
         message = None
         list = []
         for (a, b) in db.getChatIdByOrderId(orderId):  ##
@@ -56,7 +58,7 @@ class botmethods:
             message = "\n".join(list)
         return message
 
-    def getUsernameByOrderId(self, orderId):  # Function to get order by ID
+    def getUsernameByOrderId(self, orderId):
         message = None
         list = []
         for (a,b) in db.getUsernameByOrderId(orderId):  ##
@@ -64,7 +66,7 @@ class botmethods:
             message = "\n".join(list)
         return message
 
-    def getSenderByOrderId(self, orderId):  # Function to get order by ID
+    def getSenderByOrderId(self, orderId):
         message = None
         list = []
         for (a,b) in db.getsenderByOrderId(orderId):  ##
@@ -100,7 +102,7 @@ class botmethods:
             message = "\n".join(list) + '\n\nPlease key in a valid order ID to delete or tap on /menu to return to main menu.'
         return message
 
-    def getPendingOrdersByChatID(self, chatId):  # Function to get order by ID
+    def getPendingOrdersByChatID(self, chatId):
         message = None
         list = []
         for (a, b, c, d, e, f, g) in db.get_all_pendingorders_by_chat_id(chatId):  ##
@@ -132,7 +134,7 @@ class botmethods:
                 return success
         return success
 
-    def checkOrders(self, orderId):  # Function to get all orders
+    def checkOrders(self, orderId):
         success = "UNSUCCESSFUL"
         for (a, b, c, d, e, f, g) in db.get_all_orders():  ##
             try:
@@ -146,7 +148,7 @@ class botmethods:
                 return success
         return success
 
-    def checkPlacedOrdersByChatID(self, orderId, chatId):  # Function to get all orders
+    def checkPlacedOrdersByChatID(self, orderId, chatId):
         success = "UNSUCCESSFUL"
         for (a, b, c, d, e, f) in db.getAllPlacedOrdersByChatID(chatId, orderId ):  ##
             try:
@@ -160,7 +162,7 @@ class botmethods:
                 return success
         return success
 
-    def checkPendingOrdersByChatID(self, orderId, chatId):  # Function to get all orders
+    def checkPendingOrdersByChatID(self, orderId, chatId):
         success = "UNSUCCESSFUL"
         for (a, b, c, d, e,f, g) in db.get_all_pendingorders_by_chat_id(chatId):  ##
             try:
